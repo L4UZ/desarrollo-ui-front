@@ -4,8 +4,8 @@ import { object, string } from "yup";
 import styled from "styled-components";
 
 const validationSchema = object().shape({
-  email: string().email().max(255).required(),
-  password: string().max(255).min(4).required(),
+  email: string().email().required(),
+  password: string().min(4).required(),
 });
 
 const Input = styled.input`
@@ -22,7 +22,6 @@ const Form = styled.form`
 
 const H1 = styled.h1`
   display: flex;
-  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   width: 15rem;
@@ -42,16 +41,17 @@ const InputRow = styled.div`
   margin: 25px 0px;
 `;
 
-const DivMsgInvalid = styled.div`
+const DivMsg = styled.div`
   font-size: 10px;
   padding-top: 2px;
-  color: #f44336;
 `;
 
-const DivMsgValid = styled.div`
-  font-size: 10px;
-  padding-top: 2px;
-  color: #4caf50;
+const DivMsgInvalid = styled(DivMsg)`
+  color: red;
+`;
+
+const DivMsgValid = styled(DivMsg)`
+  color: green;
 `;
 
 const LoginForm = () => {
@@ -129,22 +129,5 @@ const Error = ({ touched, message }) => {
   }
   return <DivMsgValid>Ok</DivMsgValid>;
 };
-
-/*
-.form-message {
-  
-}
-.form-message.valid {
-  color: #4caf50;
-}
-.form-message.invalid {
-  font-size: 10px;
-  padding-top: 2px;
-  color: #f44336;
-}
-
-has-error {
-  border: 1px solid #f44336;
-}*/
 
 export default LoginForm;
