@@ -1,16 +1,16 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm';
+import SignIn from '../components/SignIn';
 import RegisterForm from '../components/RegisterForm';
 
 const routes = {
   default: {
     path: '/',
-    component: <LoginForm />,
+    component: <SignIn />,
     exact: true,
   },
   login: {
     path: '/login',
-    component: <LoginForm />,
+    component: <SignIn />,
   },
   register: {
     path: '/register',
