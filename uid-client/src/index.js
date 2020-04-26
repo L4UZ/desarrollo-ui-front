@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+
+import { theme } from './constants/theme';
 
 import 'typeface-roboto';
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
