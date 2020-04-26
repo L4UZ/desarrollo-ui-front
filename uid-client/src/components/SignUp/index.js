@@ -4,7 +4,7 @@ import { Avatar, Button, TextField, Grid, Typography, Container } from '@materia
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import useStyles from './styles';
-import { signInSchema } from '../../constants/validations';
+import { signUpSchema } from '../../constants/validations';
 
 const initialValues = {
   email: '',
@@ -34,7 +34,7 @@ const SignUp = () => {
         </Typography>
         <Formik
           initialValues={initialValues}
-          validationSchema={signInSchema}
+          validationSchema={signUpSchema}
           onSubmit={handleSubmit}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (

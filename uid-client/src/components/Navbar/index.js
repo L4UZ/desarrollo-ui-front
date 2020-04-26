@@ -13,9 +13,9 @@ const Navbar = () => {
       <Link to={routes.default.path} className={classes.link}>
         <Button>Home</Button>
       </Link>
-      {/* <Link to={routes.login.path} className={classes.link}>
-        <Button>Login</Button>
-      </Link> */}
+      <Link to={routes.singin.path} className={classes.link}>
+        <Button>Sign in</Button>
+      </Link>
       <Link to={routes.signup.path} className={classes.link}>
         <Button>Sign up</Button>
       </Link>

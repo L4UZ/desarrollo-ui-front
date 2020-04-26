@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUp from '../components/SignUp';
+import SignIn from '../components/SignIn';
 
 const routes = {
   default: {
@@ -7,13 +8,13 @@ const routes = {
     component: <SignUp />,
     exact: true,
   },
-  // login: {
-  //   path: '/login',
-  //   component: <LoginForm />,
-  // },
   signup: {
     path: '/signup',
     component: <SignUp />,
+  },
+  singin: {
+    path: '/singin',
+    component: <SignIn />,
   },
 };
 
