@@ -1,5 +1,5 @@
-import { Book } from './Book';
+import { User } from './User';
 
 module.exports = {
-  Book,
+  User,
 };

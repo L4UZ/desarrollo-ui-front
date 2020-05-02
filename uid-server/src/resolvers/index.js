@@ -1,6 +1,6 @@
-import { booksResolvers } from './booksResolvers';
+import { usersResolvers } from './usersResolvers';
 
-const resolvers = [booksResolvers];
+const resolvers = [usersResolvers];
 
 module.exports = {
   resolvers,

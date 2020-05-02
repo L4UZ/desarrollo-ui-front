@@ -1,14 +1,18 @@
-const books = [
+const user = [
   {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@mail.com',
+    password: 'johndoe',
   },
   {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    email: 'jane.doe@mail.com',
+    password: 'janedoe',
   },
 ];
 
 module.exports = {
-  books,
+  user,
 };

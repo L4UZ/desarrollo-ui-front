@@ -1,7 +1,7 @@
 import { query } from './query';
-import { bookType } from './types';
+import { userType } from './types';
 
-var typeDefs = [query, bookType];
+var typeDefs = [query, userType];
 
 module.exports = {
   typeDefs,
