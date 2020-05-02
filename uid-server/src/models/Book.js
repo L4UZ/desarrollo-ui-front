@@ -1,4 +1,4 @@
-const { books } = require('../data');
+import { books } from '../data';
 
 class Book {
   static all() {

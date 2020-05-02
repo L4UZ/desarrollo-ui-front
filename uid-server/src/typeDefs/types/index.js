@@ -1,4 +1,4 @@
-const { bookType } = require('./bookType');
+import { bookType } from './bookType';
 
 module.exports = {
   bookType,

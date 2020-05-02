@@ -1,4 +1,4 @@
-const { Book } = require('../models');
+import { Book } from '../models';
 
 const booksResolvers = {
   Query: {

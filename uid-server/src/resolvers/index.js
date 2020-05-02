@@ -1,4 +1,4 @@
-const { booksResolvers } = require('./booksResolvers');
+import { booksResolvers } from './booksResolvers';
 
 const resolvers = [booksResolvers];
 
