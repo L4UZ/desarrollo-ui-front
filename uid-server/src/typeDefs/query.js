@@ -6,6 +6,6 @@ const query = gql`
   }
 `;
 
-module.exports = {
+export default {
   query,
 };

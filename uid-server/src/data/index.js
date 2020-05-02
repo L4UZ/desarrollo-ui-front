@@ -13,6 +13,6 @@ const user = [
   },
 ];
 
-module.exports = {
+export default {
   user,
 };

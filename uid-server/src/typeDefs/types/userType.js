@@ -9,6 +9,6 @@ const userType = gql`
   }
 `;
 
-module.exports = {
+export default {
   userType,
 };

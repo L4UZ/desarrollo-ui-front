@@ -3,6 +3,6 @@ import { userType } from './types';
 
 var typeDefs = [query, userType];
 
-module.exports = {
+export default {
   typeDefs,
 };

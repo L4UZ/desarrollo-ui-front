@@ -1,5 +1,5 @@
 import { userType } from './userType';
 
-module.exports = {
+export default {
   userType,
 };

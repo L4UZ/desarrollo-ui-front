@@ -6,6 +6,6 @@ const usersResolvers = {
   },
 };
 
-module.exports = {
+export default {
   usersResolvers,
 };
