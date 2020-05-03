@@ -1,11 +1,7 @@
 import { UserModel } from '../data';
 
-class User {
+export class User {
   static async all() {
     return UserModel.find();
   }
 }
-
-export default {
-  User,
-};

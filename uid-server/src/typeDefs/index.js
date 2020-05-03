@@ -1,8 +1,5 @@
 import { query } from './query';
 import { userType } from './types';
+import { mutation } from './mutation';
 
-var typeDefs = [query, userType];
-
-export default {
-  typeDefs,
-};
+export const typeDefs = [query, mutation, userType];

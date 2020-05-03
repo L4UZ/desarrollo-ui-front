@@ -1,5 +1,1 @@
-import { userType } from './userType';
-
-export default {
-  userType,
-};
+export { userType } from './userType';

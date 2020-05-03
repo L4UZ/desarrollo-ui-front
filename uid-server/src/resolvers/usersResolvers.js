@@ -1,11 +1,14 @@
 import { User } from '../models';
+import { UserModel } from '../data';
 
-const usersResolvers = {
+export const usersResolvers = {
   Query: {
     users: () => User.all(),
   },
-};
-
-export default {
-  usersResolvers,
+  Mutation: {
+    signUp: (_, { user }) => {
+      UserModel.create([user]);
+      return `${user.firstName} ${user.lastName} (${user.email}) <${user.password}>`;
+    },
+  },
 };
