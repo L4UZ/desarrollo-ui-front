@@ -1,11 +1,7 @@
-import { user } from '../data';
+import { UserModel } from '../data';
 
-class User {
-  static all() {
-    return user;
+export class User {
+  static async all() {
+    return UserModel.find();
   }
 }
-
-module.exports = {
-  User,
-};

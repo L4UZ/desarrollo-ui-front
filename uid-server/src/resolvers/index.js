@@ -1,7 +1,3 @@
 import { usersResolvers } from './usersResolvers';
 
-const resolvers = [usersResolvers];
-
-module.exports = {
-  resolvers,
-};
+export const resolvers = [usersResolvers];

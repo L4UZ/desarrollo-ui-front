@@ -1,5 +1,1 @@
-import { bookType } from './bookType';
-
-module.exports = {
-  bookType,
-};
+export { userType } from './userType';
