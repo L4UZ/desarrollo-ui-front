@@ -2,9 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Avatar, Button, TextField, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
+import routes from '../../constants/routes';
 
 const initialValues = {
   email: '',
@@ -14,14 +18,15 @@ const initialValues = {
   lastName: '',
 };
 
+const Register = gql`
+  mutation SignUp($user: SignUpInput) {
+    signUp(user: $user)
+  }
+`;
+
 const SignUp = () => {
   const classes = useStyles();
-
-  const handleSubmit = evt => {
-    setTimeout(() => {
-      console.log(evt);
-    }, 1000);
-  };
+  const [signUp, { data }] = useMutation(Register);
 
   return (
     <Container component="main" maxWidth={'sm'}>
@@ -35,7 +40,20 @@ const SignUp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={signUpSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            signUp({
+              variables: {
+                user: {
+                  firstName: values.firstName,
+                  lastName: values.lastName,
+                  email: values.email,
+                  password: values.password,
+                },
+              },
+            });
+            resetForm();
+          }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
@@ -49,7 +67,6 @@ const SignUp = () => {
                     fullWidth
                     id="firstName"
                     label="First Name"
-                    autoFocus
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.firstName}
@@ -118,13 +135,13 @@ const SignUp = () => {
               >
                 Sign Up
               </Button>
-              {/* <Grid container justify="flex-end">
+              <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to={routes.signin.path} variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>
-              </Grid> */}
+              </Grid>
             </form>
           )}
         </Formik>

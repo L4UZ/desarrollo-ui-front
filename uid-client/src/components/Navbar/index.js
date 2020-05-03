@@ -13,7 +13,7 @@ const Navbar = () => {
       <Link to={routes.default.path} className={classes.link}>
         <Button>Home</Button>
       </Link>
-      <Link to={routes.singin.path} className={classes.link}>
+      <Link to={routes.signin.path} className={classes.link}>
         <Button>Sign in</Button>
       </Link>
       <Link to={routes.signup.path} className={classes.link}>
