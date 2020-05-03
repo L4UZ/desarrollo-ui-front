@@ -1,8 +1,8 @@
-import { user } from '../data';
+import { UserModel } from '../data';
 
 class User {
-  static all() {
-    return user;
+  static async all() {
+    return UserModel.find();
   }
 }
 
