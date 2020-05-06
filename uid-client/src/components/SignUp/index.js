@@ -2,13 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Avatar, Button, TextField, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
 import routes from '../../constants/routes';
+import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
 
 const initialValues = {
   email: '',
@@ -18,15 +18,10 @@ const initialValues = {
   lastName: '',
 };
 
-const Register = gql`
-  mutation SignUp($user: SignUpInput) {
-    signUp(user: $user)
-  }
-`;
-
 const SignUp = () => {
   const classes = useStyles();
-  const [signUp, { data }] = useMutation(Register);
+  const [signUp, { data }] = useMutation(SIGN_UP_MUTATION);
+  console.log(data);
 
   return (
     <Container component="main" maxWidth={'sm'}>

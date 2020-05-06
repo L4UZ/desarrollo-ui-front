@@ -11,25 +11,17 @@ import {
   Container,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import { signInSchema } from '../../constants/validations';
 import routes from '../../constants/routes';
-
-const Login = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-    }
-  }
-`;
+import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
 
 const SignIn = () => {
   const classes = useStyles();
-  const [login, { data }] = useMutation(Login);
+  const [login, { data }] = useMutation(SIGN_IN_MUTATION);
 
   return (
     <Container component="main" maxWidth="sm">
