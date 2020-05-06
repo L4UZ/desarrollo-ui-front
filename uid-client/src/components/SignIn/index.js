@@ -9,6 +9,7 @@ import {
   Grid,
   Typography,
   Container,
+  CircularProgress,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useMutation } from '@apollo/react-hooks';
@@ -18,10 +19,11 @@ import useStyles from './styles';
 import { signInSchema } from '../../constants/validations';
 import routes from '../../constants/routes';
 import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
+import Alert from '@material-ui/lab/Alert';
 
 const SignIn = () => {
   const classes = useStyles();
-  const [login, { data }] = useMutation(SIGN_IN_MUTATION);
+  const [signIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -35,9 +37,8 @@ const SignIn = () => {
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={signInSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setSubmitting(true);
-            login({ variables: { email: values.email, password: values.password } });
+          onSubmit={({ values: credentials }, { resetForm }) => {
+            signIn({ variables: { credentials } });
             resetForm();
           }}
         >
@@ -100,6 +101,8 @@ const SignIn = () => {
             </form>
           )}
         </Formik>
+        {loading && <CircularProgress />}
+        {error && <Alert severity="error">Wrong email or password</Alert>}
       </div>
     </Container>
   );

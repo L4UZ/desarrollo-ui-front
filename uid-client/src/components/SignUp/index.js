@@ -43,18 +43,8 @@ const SignUp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={signUpSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setSubmitting(true);
-            signUp({
-              variables: {
-                user: {
-                  firstName: values.firstName,
-                  lastName: values.lastName,
-                  email: values.email,
-                  password: values.password,
-                },
-              },
-            });
+          onSubmit={({ values: user }, { resetForm }) => {
+            signUp({ variables: { user } });
             resetForm();
           }}
         >
@@ -149,7 +139,7 @@ const SignUp = () => {
           )}
         </Formik>
         {loading && <CircularProgress />}
-        {error && <Alert severity="error">Wrong email or password</Alert>}
+        {error && <Alert severity="error">Account already exists</Alert>}
       </div>
     </Container>
   );
