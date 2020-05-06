@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { ApolloProvider } from '@apollo/react-hooks';
 
+import apiClient from './api/apiClient';
 import { theme } from './constants/theme';
 
 import 'typeface-roboto';
@@ -12,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <App />
+      <ApolloProvider client={apiClient}>
+        <App />
+      </ApolloProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,10 +1,23 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { Avatar, Button, TextField, Grid, Typography, Container } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Typography,
+  Container,
+  CircularProgress,
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { useMutation } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
+import routes from '../../constants/routes';
+import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
 
 const initialValues = {
   email: '',
@@ -16,12 +29,7 @@ const initialValues = {
 
 const SignUp = () => {
   const classes = useStyles();
-
-  const handleSubmit = evt => {
-    setTimeout(() => {
-      console.log(evt);
-    }, 1000);
-  };
+  const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION);
 
   return (
     <Container component="main" maxWidth={'sm'}>
@@ -35,7 +43,10 @@ const SignUp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={signUpSchema}
-          onSubmit={handleSubmit}
+          onSubmit={({ values: user }, { resetForm }) => {
+            signUp({ variables: { user } });
+            resetForm();
+          }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
@@ -49,7 +60,6 @@ const SignUp = () => {
                     fullWidth
                     id="firstName"
                     label="First Name"
-                    autoFocus
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.firstName}
@@ -118,16 +128,18 @@ const SignUp = () => {
               >
                 Sign Up
               </Button>
-              {/* <Grid container justify="flex-end">
+              <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to={routes.signin.path} variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>
-              </Grid> */}
+              </Grid>
             </form>
           )}
         </Formik>
+        {loading && <CircularProgress />}
+        {error && <Alert severity="error">Account already exists</Alert>}
       </div>
     </Container>
   );
