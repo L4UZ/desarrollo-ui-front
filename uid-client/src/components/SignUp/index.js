@@ -1,6 +1,15 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { Avatar, Button, TextField, Grid, Typography, Container } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Typography,
+  Container,
+  CircularProgress,
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
@@ -20,7 +29,7 @@ const initialValues = {
 
 const SignUp = () => {
   const classes = useStyles();
-  const [signUp, { data }] = useMutation(SIGN_UP_MUTATION);
+  const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION);
 
   return (
     <Container component="main" maxWidth={'sm'}>
@@ -139,6 +148,8 @@ const SignUp = () => {
             </form>
           )}
         </Formik>
+        {loading && <CircularProgress />}
+        {error && <Alert severity="error">Wrong email or password</Alert>}
       </div>
     </Container>
   );
