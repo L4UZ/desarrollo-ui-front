@@ -1,8 +1,9 @@
-import { User } from '../models';
-import { UserModel } from '../data';
 import { hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { pick } from 'lodash';
+
+import { User } from '../models';
+import { UserModel } from '../data';
 
 export const usersResolvers = {
   Query: {
