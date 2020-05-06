@@ -21,7 +21,6 @@ const initialValues = {
 const SignUp = () => {
   const classes = useStyles();
   const [signUp, { data }] = useMutation(SIGN_UP_MUTATION);
-  console.log(data);
 
   return (
     <Container component="main" maxWidth={'sm'}>
