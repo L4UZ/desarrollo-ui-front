@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import {
   Avatar,
@@ -25,6 +25,10 @@ const SignIn = () => {
   const classes = useStyles();
   const [signIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION);
 
+  useEffect(() => {
+    if (data) localStorage.setItem('token', data.signUp);
+  });
+
   return (
     <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
@@ -37,51 +41,53 @@ const SignIn = () => {
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={signInSchema}
-          onSubmit={({ values: credentials }, { resetForm }) => {
-            signIn({ variables: { credentials } });
+          onSubmit={(values, { resetForm }) => {
+            signIn({ variables: { credentials: values } });
             resetForm();
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                type="email"
-                placeholder="Enter your email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                error={errors.email && touched.email}
-                helperText={touched.email && errors.email}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                placeholder="Enter your password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                error={errors.password && touched.password}
-                helperText={touched.password && errors.password}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+            <form onSubmit={handleSubmit} className={classes.form}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                    error={errors.email && touched.email}
+                    helperText={touched.email && errors.email}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    placeholder="Enter your password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    error={errors.password && touched.password}
+                    helperText={touched.password && errors.password}
+                  />
+                </Grid>
+              </Grid>
               <Button
                 type="submit"
                 fullWidth

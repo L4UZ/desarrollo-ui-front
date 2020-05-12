@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import {
   Avatar,
@@ -18,6 +18,7 @@ import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
 import routes from '../../constants/routes';
 import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
+import { pick } from 'lodash';
 
 const initialValues = {
   email: '',
@@ -31,8 +32,12 @@ const SignUp = () => {
   const classes = useStyles();
   const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION);
 
+  useEffect(() => {
+    if (data) localStorage.setItem('token', data.signUp);
+  });
+
   return (
-    <Container component="main" maxWidth={'sm'}>
+    <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -43,17 +48,20 @@ const SignUp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={signUpSchema}
-          onSubmit={({ values: user }, { resetForm }) => {
-            signUp({ variables: { user } });
+          onSubmit={(values, { resetForm }) => {
+            signUp({
+              variables: { user: pick(values, ['firstName', 'lastName', 'email', 'password']) },
+            });
             resetForm();
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+            <form onSubmit={handleSubmit} className={classes.form}>
+              <Grid container>
+                <Grid item xs={12}>
                   <TextField
                     autoComplete="fname"
+                    margin="normal"
                     name="firstName"
                     variant="outlined"
                     required
@@ -67,9 +75,10 @@ const SignUp = () => {
                     helperText={touched.firstName && errors.firstName}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     variant="outlined"
+                    margin="normal"
                     required
                     fullWidth
                     id="lastName"
@@ -86,6 +95,7 @@ const SignUp = () => {
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
+                    margin="normal"
                     required
                     fullWidth
                     id="email"
@@ -103,6 +113,7 @@ const SignUp = () => {
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
+                    margin="normal"
                     required
                     fullWidth
                     name="password"
@@ -115,6 +126,24 @@ const SignUp = () => {
                     value={values.password}
                     error={errors.password && touched.password}
                     helperText={touched.password && errors.password}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="passwordConfirmation"
+                    label="Confirm your password"
+                    type="password"
+                    id="passwordConfirmation"
+                    autoComplete="current-passwordConfirmation"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.passwordConfirmation}
+                    error={errors.passwordConfirmation && touched.passwordConfirmation}
+                    helperText={touched.passwordConfirmation && errors.passwordConfirmation}
                   />
                 </Grid>
               </Grid>

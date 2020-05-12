@@ -1,6 +1,7 @@
 import React from 'react';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
+import RegionDetail from '../pages/RegionDetail';
 
 const routes = {
   default: {
@@ -15,6 +16,10 @@ const routes = {
   signin: {
     path: '/signin',
     component: <SignIn />,
+  },
+  regionDetail: {
+    path: '/region-detail/:regionId',
+    component: <RegionDetail />,
   },
 };
 
