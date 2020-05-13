@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ApolloProvider } from '@apollo/react-hooks';
+
+import * as serviceWorker from './serviceWorker';
+import App from './App';
 
 import apiClient from './api/apiClient';
 import { theme } from './constants/theme';
