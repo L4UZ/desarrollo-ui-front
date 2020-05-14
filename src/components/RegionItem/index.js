@@ -5,7 +5,7 @@ import { string, number, shape } from 'prop-types';
 
 import useStyles from './styles';
 
-const RegionItem = ({ region, cols }) => {
+const RegionItem = ({ region: { name, imageSrc }, cols }) => {
   const classes = useStyles();
 
   return (
@@ -13,10 +13,10 @@ const RegionItem = ({ region, cols }) => {
       <Link to="/signIn" className={classes.link}>
         <Card className={classes.gridItem}>
           <CardActionArea>
-            <CardMedia className={classes.img} image={region.imageSrc} title={region.name} />
+            <CardMedia className={classes.img} image={imageSrc} title={name} />
             <div className={classes.titleBar}>
               <Typography component="h6" variant="h6">
-                {region.name}
+                {name}
               </Typography>
             </div>
           </CardActionArea>

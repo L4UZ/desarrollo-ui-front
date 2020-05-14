@@ -5,16 +5,16 @@ import { string, arrayOf, object, shape } from 'prop-types';
 import useStyles from './styles';
 import RegionItem from '../RegionItem';
 
-const ContinentDetail = ({ continent }) => {
+const ContinentDetail = ({ continent: { name, regions } }) => {
   const classes = useStyles();
 
   return (
     <div>
       <Typography variant="h4" className={classes.continentTitle}>
-        {continent.name}
+        {name}
       </Typography>
       <Grid container spacing={2} direction="row">
-        {continent.regions.map(region => (
+        {regions.map(region => (
           <RegionItem region={region} cols={region.cols} />
         ))}
       </Grid>
