@@ -1,8 +1,9 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
+import { string, arrayOf, object, shape } from 'prop-types';
 
 import useStyles from './styles';
-import RegionItem from '../../components/RegionItem';
+import RegionItem from '../RegionItem';
 
 const ContinentDetail = ({ continent }) => {
   const classes = useStyles();
@@ -19,6 +20,11 @@ const ContinentDetail = ({ continent }) => {
       </Grid>
     </div>
   );
+};
+
+ContinentDetail.propTypes = {
+  continent: shape({ type: object, properties: { name: string, regions: arrayOf(object) } })
+    .isRequired,
 };
 
 export default ContinentDetail;

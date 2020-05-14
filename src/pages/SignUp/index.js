@@ -13,12 +13,11 @@ import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
+import { pick } from 'lodash';
 
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
-import routes from '../../constants/routes';
 import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
-import { pick } from 'lodash';
 
 const initialValues = {
   email: '',
@@ -159,7 +158,7 @@ const SignUp = () => {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link to={routes.signin.path} variant="body2">
+                  <Link to="/signin" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

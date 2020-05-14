@@ -4,8 +4,6 @@ import {
   Avatar,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Typography,
   Container,
@@ -14,12 +12,11 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './styles';
 import { signInSchema } from '../../constants/validations';
-import routes from '../../constants/routes';
 import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
-import Alert from '@material-ui/lab/Alert';
 
 const SignIn = () => {
   const classes = useStyles();
@@ -99,8 +96,8 @@ const SignIn = () => {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link to={routes.signup.path} variant="body2">
-                    Don't have an account? Sign Up
+                  <Link to="/signup" variant="body2">
+                    Don&apos;t have an account? Sign Up
                   </Link>
                 </Grid>
               </Grid>
