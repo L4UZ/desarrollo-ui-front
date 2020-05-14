@@ -1,7 +1,7 @@
 import React from 'react';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
-import Home from '../components/Home';
+import Home from '../pages/Home';
 import RegionDetail from '../pages/RegionDetail';
 
 const routes = {

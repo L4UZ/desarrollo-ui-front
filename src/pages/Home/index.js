@@ -1,12 +1,12 @@
 import React from 'react';
-import { Grid, Card, CardMedia, CardActionArea, Typography, Container } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 
 import useStyles from './styles';
-import routes from '../../constants/routes';
-import { Link } from 'react-router-dom';
+import ContinentDetail from '../../components/ContinentDetail';
 
 const Home = () => {
   const classes = useStyles();
+
   const regions1 = [
     {
       name: 'Tanganica',
@@ -80,51 +80,13 @@ const Home = () => {
   ];
 
   return (
-    <Container component="main">
+    <Container component="main" className={classes.container}>
       <Grid container spacing={2} direction="column">
         {continents.map(continent => (
-          <ContinentComponent continent={continent} />
+          <ContinentDetail continent={continent} />
         ))}
       </Grid>
     </Container>
-  );
-};
-
-const ContinentComponent = ({ continent }) => {
-  const classes = useStyles();
-
-  return (
-    <div>
-      <Typography variant="h4" className={classes.continentTitle}>
-        {continent.name}
-      </Typography>
-      <Grid container spacing={2} direction="row">
-        {continent.regions.map(region => (
-          <RegionComponent region={region} cols={region.cols} />
-        ))}
-      </Grid>
-    </div>
-  );
-};
-
-const RegionComponent = ({ region, cols, ...props }) => {
-  const classes = useStyles();
-
-  return (
-    <Grid item xs={12} md={6} lg={cols * 3 || 3}>
-      <Link to={routes.signin.path} className={classes.link}>
-        <Card className={classes.gridItem}>
-          <CardActionArea>
-            <CardMedia className={classes.img} image={region.imageSrc} title={region.name} />
-            <div className={classes.titleBar}>
-              <Typography component="h6" variant="h6">
-                {region.name}
-              </Typography>
-            </div>
-          </CardActionArea>
-        </Card>
-      </Link>
-    </Grid>
   );
 };
 
