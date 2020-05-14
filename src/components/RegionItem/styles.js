@@ -1,25 +1,28 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, fade } from '@material-ui/core';
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    background: `linear-gradient(to top, ${fade(theme.palette.common.black, 0.8)} 0%, ${fade(
+      theme.palette.common.black,
+      0.3
+    )} 70%, ${fade(theme.palette.common.black, 0)} 100%)`,
     zIndex: '3',
-    padding: '10px',
-    marginTop: '-50px',
-    color: 'white',
+    padding: '0.6rem',
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    color: `${theme.palette.common.white}`,
   },
   gridItem: {
-    height: '250',
-    maxHeight: '250',
+    height: '14rem',
+    maxHeight: '15rem',
   },
   img: {
     maxWidth: '100%',
     maxHeight: '100%',
     display: 'flex',
-    alignItems: 'center',
     overflow: 'hidden',
-    minHeight: '200px',
+    minHeight: '14rem',
   },
   link: {
     textDecoration: 'none',
