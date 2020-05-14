@@ -1,6 +1,8 @@
-import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Typography, Grid, Container } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import PlaceItem from '../../components/PlaceItem';
+import PlaceModal from '../../components/PlaceModal';
 
 const region = {
   name: 'Mar del Plata',
@@ -29,10 +31,10 @@ const region = {
       ],
     },
     {
-      name: 'Cuenca del Mar del Plata',
+      name: 'La otra cuenca del Mar del Plata',
       description: 'Nice place',
       imagesSrc: [
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1584672277148-fa8d3b8e3780?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
       ],
       activities: [
         {
@@ -55,20 +57,27 @@ const region = {
 };
 
 const RegionDetail = () => {
-  const { regionId } = useParams();
-  console.log(regionId);
+  // const { regionId } = useParams();
   const { name: regionName, places } = region;
+
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
   return (
-    <div>
+    <Container>
       <Typography variant="h1">{regionName}</Typography>
       <Grid container spacing={3}>
-        {places.map(({ name, description }, i) => (
-          <Grid item key={`${name}${i}`}>
-            {name}
-          </Grid>
+        {places.map(place => (
+          <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlace(place)} />
         ))}
       </Grid>
-    </div>
+      {selectedPlace && (
+        <PlaceModal
+          open={!!selectedPlace}
+          handleClose={() => setSelectedPlace(null)}
+          place={selectedPlace}
+        />
+      )}
+    </Container>
   );
 };
 
