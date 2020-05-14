@@ -1,12 +1,13 @@
 import React from 'react';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
+import Home from '../components/Home';
 import RegionDetail from '../pages/RegionDetail';
 
 const routes = {
   default: {
     path: '/',
-    component: <SignUp />,
+    component: <Home />,
     exact: true,
   },
   signup: {
