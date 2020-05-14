@@ -1,18 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Paper,
-  Card,
-  CardMedia,
-  CardActionArea,
-  CardContent,
-  Typography,
-  Container,
-  GridListTile,
-  GridListTileBar,
-  IconButton,
-  GridList,
-} from '@material-ui/core';
+import { Grid, Card, CardMedia, CardActionArea, Typography, Container } from '@material-ui/core';
 
 import useStyles from './styles';
 import routes from '../../constants/routes';
@@ -20,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const classes = useStyles();
-  const regions = [
+  const regions1 = [
     {
       name: 'Tanganica',
       imageSrc:
@@ -59,14 +46,64 @@ const Home = () => {
     },
   ];
 
+  const regions2 = [
+    {
+      name: 'New York',
+      imageSrc:
+        'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+      cols: 2,
+      rows: 2,
+    },
+    {
+      name: 'Brasilia',
+      imageSrc:
+        'https://images.unsplash.com/photo-1521516730808-2cf7f175e179?ixlib=rb-1.2.1&auto=format&fit=crop&w=706&q=80',
+      cols: 2,
+    },
+    {
+      name: 'South Korea',
+      imageSrc:
+        'https://images.unsplash.com/photo-1448523183439-d2ac62aca997?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+      cols: 4,
+    },
+  ];
+
+  const continents = [
+    {
+      name: 'Este continente',
+      regions: regions1,
+    },
+    {
+      name: 'Otro continente',
+      regions: regions2,
+    },
+  ];
+
   return (
     <Container component="main">
-      <Grid container spacing={2} direction="row">
-        {regions.map(region => (
-          <RegionComponent region={region} cols={region.cols} />
+      <Grid container spacing={2} direction="column">
+        {continents.map(continent => (
+          <ContinentComponent continent={continent} />
         ))}
       </Grid>
     </Container>
+  );
+};
+
+const ContinentComponent = ({ continent }) => {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Typography variant="h4" className={classes.continentTitle}>
+        {continent.name}
+      </Typography>
+      <Grid container spacing={2} direction="row">
+        {continent.regions.map(region => (
+          <RegionComponent region={region} cols={region.cols} />
+        ))}
+      </Grid>
+    </div>
   );
 };
 
@@ -75,16 +112,18 @@ const RegionComponent = ({ region, cols, ...props }) => {
 
   return (
     <Grid item xs={12} md={6} lg={cols * 3 || 3}>
-      <Card className={classes.gridItem}>
-        <CardActionArea>
-          <CardMedia className={classes.img} image={region.imageSrc} title={region.name} />
-          <div className={classes.titleBar}>
-            <Typography component="h6" variant="h6">
-              {region.name}
-            </Typography>
-          </div>
-        </CardActionArea>
-      </Card>
+      <Link to={routes.signin.path} className={classes.link}>
+        <Card className={classes.gridItem}>
+          <CardActionArea>
+            <CardMedia className={classes.img} image={region.imageSrc} title={region.name} />
+            <div className={classes.titleBar}>
+              <Typography component="h6" variant="h6">
+                {region.name}
+              </Typography>
+            </div>
+          </CardActionArea>
+        </Card>
+      </Link>
     </Grid>
   );
 };

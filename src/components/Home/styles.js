@@ -37,4 +37,11 @@ export default makeStyles(theme => ({
     overflow: 'hidden',
     minHeight: '200px',
   },
+  continentTitle: {
+    padding: '1%',
+    marginTop: '30px',
+  },
+  link: {
+    textDecoration: 'none',
+  },
 }));
