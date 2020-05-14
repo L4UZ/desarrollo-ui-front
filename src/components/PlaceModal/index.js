@@ -1,13 +1,19 @@
 import React from 'react';
-import { Modal } from '@material-ui/core';
+import { Modal, Paper, Container } from '@material-ui/core';
 import { bool, func, shape, string } from 'prop-types';
 
-const PlaceModal = ({ open, handleClose, place }) => (
-  // <div>{place.name}</div>
-  <Modal open={open} onClose={handleClose}>
-    <div>{place.name}</div>
-  </Modal>
-);
+import useStyles from './styles';
+
+const PlaceModal = ({ open, handleClose, place }) => {
+  const classes = useStyles();
+  return (
+    <Modal open={open} onClose={handleClose} className={classes.modal}>
+      <Container maxWidth="md" className={classes.container}>
+        <Paper className={classes.content}>{place.name}</Paper>
+      </Container>
+    </Modal>
+  );
+};
 
 PlaceModal.propTypes = {
   open: bool.isRequired,

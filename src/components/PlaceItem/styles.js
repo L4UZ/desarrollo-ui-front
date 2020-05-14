@@ -13,6 +13,7 @@ export default makeStyles(({ palette, spacing }) => ({
     padding: spacing(2),
     position: 'absolute',
     right: 0,
+    textAlign: 'center',
     textShadow: `2px 2px 2px ${palette.common.black}`,
     top: 0,
   },
