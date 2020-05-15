@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Typography, Grid, Container } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
 import PlaceItem from '../../components/PlaceItem';
 import PlaceModal from '../../components/PlaceModal';
 
@@ -11,6 +10,13 @@ const region = {
       name: 'Cuenca del Mar del Plata',
       description: 'Nice place',
       imagesSrc: [
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
         'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
       ],
       activities: [
@@ -27,6 +33,15 @@ const region = {
         {
           comment: 'Really nice place!',
           score: 5,
+        },
+        {
+          comment: 'Piece of shit place, would not recommend',
+          score: 0,
+        },
+
+        {
+          comment: 'Ma o meno',
+          score: 3,
         },
       ],
     },
