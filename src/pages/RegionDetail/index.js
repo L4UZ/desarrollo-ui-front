@@ -17,7 +17,7 @@ const RegionDetail = () => {
 
   return (
     <Container>
-      <Typography variant="h2">{regionName}</Typography>
+      <Typography variant="h2">{region.name}</Typography>
       <Grid container spacing={3}>
         {region.places.map(place => (
           <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlace(place)} />
