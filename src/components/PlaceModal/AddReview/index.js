@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-import { func } from 'prop-types';
 
 import useStyles from './styles';
 
