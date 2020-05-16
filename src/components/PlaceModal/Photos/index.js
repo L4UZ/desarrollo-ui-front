@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, GridList, GridListTile, ButtonBase } from '@material-ui/core';
-import { string, arrayOf, func } from 'prop-types';
+import { string, arrayOf, func, object } from 'prop-types';
 
 import useStyles from './styles';
 
@@ -19,7 +19,6 @@ const Photos = ({ name, imagesSrc, setPopoverImg }) => {
             className={classes.photoContainer}
             classes={{
               root: classes.gridListTile,
-              tile: classes.gridListTile,
             }}
             cols={1}
           >
@@ -35,7 +34,7 @@ const Photos = ({ name, imagesSrc, setPopoverImg }) => {
 
 Photos.propTypes = {
   name: string.isRequired,
-  imagesSrc: arrayOf(Object).isRequired,
+  imagesSrc: arrayOf(object).isRequired,
   setPopoverImg: func.isRequired,
 };
 

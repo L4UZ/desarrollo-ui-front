@@ -7,7 +7,7 @@ import {
   ExpansionPanelDetails,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { arrayOf } from 'prop-types';
+import { arrayOf, object } from 'prop-types';
 
 import useStyles from './styles';
 
@@ -40,7 +40,7 @@ const Activities = ({ activities }) => {
 };
 
 Activities.propTypes = {
-  activities: arrayOf(Object).isRequired,
+  activities: arrayOf(object).isRequired,
 };
 
 export default Activities;

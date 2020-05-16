@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import { func } from 'prop-types';
 
 import useStyles from './styles';
 
-const AddReview = ({ setReview }) => {
+const AddReview = () => {
   const classes = useStyles();
+  const [review, setReview] = useState();
 
   return (
     <Grid item xs={12} fullWidth className={classes.gridItem}>
@@ -24,17 +25,13 @@ const AddReview = ({ setReview }) => {
         placeholder="Add a review"
         variant="outlined"
         fullWidth
-        className={classes.addReviews}
+        className={classes.reviewComment}
       />
       <Button variant="contained" color="primary" className={classes.reviewButton}>
         Add review
       </Button>
     </Grid>
   );
-};
-
-AddReview.propTypes = {
-  setReview: func.isRequired,
 };
 
 export default AddReview;

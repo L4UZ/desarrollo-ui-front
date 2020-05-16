@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     position: 'relative',
     padding: 0,
   },
-  addReviews: {
+  reviewComment: {
     paddingBottom: '2rem',
   },
   reviewButton: {

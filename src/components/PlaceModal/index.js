@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Paper, Container, Typography, Grid, Popover } from '@material-ui/core';
 import { bool, func, shape, string } from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
@@ -17,8 +17,7 @@ const PlaceModal = ({
 }) => {
   const classes = useStyles();
 
-  const [popoverImg, setPopoverImg] = React.useState(null);
-  const [review, setReview] = React.useState(2);
+  const [popoverImg, setPopoverImg] = useState(null);
 
   return (
     <Modal open={open} onClose={handleClose} className={classes.modal}>
@@ -33,7 +32,7 @@ const PlaceModal = ({
             <Photos name={name} imagesSrc={imagesSrc} setPopoverImg={setPopoverImg} />
             <Activities activities={activities} />
             <ListReviws reviews={reviews} />
-            <AddReview setReview={setReview} />
+            <AddReview />
           </Grid>
         </Paper>
         <Popover

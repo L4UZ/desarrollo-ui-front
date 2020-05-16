@@ -14,13 +14,13 @@ const Reviews = ({ reviews }) => {
       </Typography>
       <Grid container spacing={3} direction="column">
         {reviews.map(review => (
-          <Paper elevation={2} className={classes.reviews}>
-            <Grid item>
+          <Grid item>
+            <Paper elevation={2} className={classes.reviews}>
               <Rating name="Score" readOnly="true" value={review.score} />
               <Typography variant="body1">Comment: {review.comment}</Typography>
               <Typography variant="caption">By: Name - email</Typography>
-            </Grid>
-          </Paper>
+            </Paper>
+          </Grid>
         ))}
       </Grid>
     </Grid>
