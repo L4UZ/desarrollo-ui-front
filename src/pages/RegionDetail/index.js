@@ -1,72 +1,25 @@
 import React, { useState } from 'react';
 import { Typography, Grid, Container } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
+
 import PlaceItem from '../../components/PlaceItem';
 import PlaceModal from '../../components/PlaceModal';
-
-const region = {
-  name: 'Mar del Plata',
-  places: [
-    {
-      name: 'Cuenca del Mar del Plata',
-      description: 'Nice place',
-      imagesSrc: [
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80',
-      ],
-      activities: [
-        {
-          name: 'Activity 1',
-          price: 3200,
-        },
-        {
-          name: 'Activity 2',
-          price: 6400,
-        },
-      ],
-      reviews: [
-        {
-          comment: 'Really nice place!',
-          score: 5,
-        },
-      ],
-    },
-    {
-      name: 'La otra cuenca del Mar del Plata',
-      description: 'Nice place',
-      imagesSrc: [
-        'https://images.unsplash.com/photo-1584672277148-fa8d3b8e3780?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-      ],
-      activities: [
-        {
-          name: 'Activity 1',
-          price: 3200,
-        },
-        {
-          name: 'Activity 2',
-          price: 6400,
-        },
-      ],
-      reviews: [
-        {
-          comment: 'Really nice place!',
-          score: 5,
-        },
-      ],
-    },
-  ],
-};
+import { REGION_DETAIL } from '../../api/queries';
 
 const RegionDetail = () => {
-  // const { regionId } = useParams();
-  const { name: regionName, places } = region;
-
+  const { regionId } = useParams();
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const { data, loading } = useQuery(REGION_DETAIL, { variables: { regionId } });
+
+  if (loading) return <div>loading..</div>;
+  const { region } = data;
 
   return (
     <Container>
-      <Typography variant="h1">{regionName}</Typography>
+      <Typography variant="h1">{region.name}</Typography>
       <Grid container spacing={3}>
-        {places.map(place => (
+        {region.places.map(place => (
           <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlace(place)} />
         ))}
       </Grid>
