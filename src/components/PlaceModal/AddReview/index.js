@@ -9,7 +9,7 @@ const AddReview = () => {
   const [review, setReview] = useState();
 
   return (
-    <Grid item xs={12} fullWidth className={classes.gridItem}>
+    <Grid item xs={12} className={classes.gridItem}>
       <Typography variant="h6" gutterBottom>
         Add review
       </Typography>

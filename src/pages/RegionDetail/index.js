@@ -9,7 +9,7 @@ import { REGION_DETAIL } from '../../api/queries';
 
 const RegionDetail = () => {
   const { regionId } = useParams();
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [selectedPlaceId, setSelectedPlaceId] = useState(null);
   const { data, loading } = useQuery(REGION_DETAIL, { variables: { regionId } });
 
   if (loading) return <div>loading..</div>;
@@ -20,14 +20,14 @@ const RegionDetail = () => {
       <Typography variant="h2">{region.name}</Typography>
       <Grid container spacing={3}>
         {region.places.map(place => (
-          <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlace(place)} />
+          <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlaceId(place.id)} />
         ))}
       </Grid>
-      {selectedPlace && (
+      {selectedPlaceId && (
         <PlaceModal
-          open={!!selectedPlace}
-          handleClose={() => setSelectedPlace(null)}
-          place={selectedPlace}
+          open={!!selectedPlaceId}
+          handleClose={() => setSelectedPlaceId(null)}
+          placeId={selectedPlaceId}
         />
       )}
     </Container>

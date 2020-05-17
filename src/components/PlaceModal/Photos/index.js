@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, GridList, GridListTile, ButtonBase } from '@material-ui/core';
-import { string, arrayOf, func, object } from 'prop-types';
+import { string, arrayOf, func } from 'prop-types';
 
 import useStyles from './styles';
 
@@ -15,7 +15,7 @@ const Photos = ({ name, imagesSrc, setPopoverImg }) => {
       <GridList cellHeight={200} className={classes.sideScroller} cols={3}>
         {imagesSrc.map(image => (
           <GridListTile
-            key={name}
+            key={`${name}-${image}`}
             className={classes.photoContainer}
             classes={{
               root: classes.gridListTile,
@@ -34,7 +34,7 @@ const Photos = ({ name, imagesSrc, setPopoverImg }) => {
 
 Photos.propTypes = {
   name: string.isRequired,
-  imagesSrc: arrayOf(object).isRequired,
+  imagesSrc: arrayOf(string).isRequired,
   setPopoverImg: func.isRequired,
 };
 

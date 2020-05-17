@@ -29,7 +29,7 @@ const Activities = ({ activities }) => {
             {activities.map(activitiy => (
               <Grid item>
                 <Typography variant="body1">{activitiy.name}</Typography>
-                <Typography variant="body2">$ {activitiy.price}</Typography>
+                <Typography variant="body2">${activitiy.price}</Typography>
               </Grid>
             ))}
           </Grid>

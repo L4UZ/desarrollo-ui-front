@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Paper, Container, Typography, Grid, Popover } from '@material-ui/core';
-import { bool, func, shape, string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
+import { useQuery } from '@apollo/react-hooks';
+import { isEmpty } from 'lodash';
 
 import useStyles from './styles';
 import Desctiption from './Description';
@@ -9,31 +11,40 @@ import Photos from './Photos';
 import Activities from './Activities';
 import ListReviws from './ListReviews';
 import AddReview from './AddReview';
+import { PLACE_DETAIL } from '../../api/queries';
 
-const PlaceModal = ({
-  open,
-  handleClose,
-  place: { name, description, imagesSrc, activities, reviews },
-}) => {
+const PlaceModal = ({ open, handleClose, placeId }) => {
   const classes = useStyles();
-
   const [popoverImg, setPopoverImg] = useState(null);
+
+  const { data, loading } = useQuery(PLACE_DETAIL, { variables: { placeId } });
 
   return (
     <Modal open={open} onClose={handleClose} className={classes.modal}>
       <Container maxWidth="lg" className={classes.container}>
         <Paper className={classes.content}>
-          <Rating name="Score" readOnly="true" value={4} />
-          <Typography variant="h4" gutterBottom>
-            {name}
-          </Typography>
-          <Grid container spacing={3}>
-            <Desctiption description={description} />
-            <Photos name={name} imagesSrc={imagesSrc} setPopoverImg={setPopoverImg} />
-            <Activities activities={activities} />
-            <ListReviws reviews={reviews} />
-            <AddReview />
-          </Grid>
+          {loading && <div>Loading...</div>}
+          {data && (
+            <>
+              <Rating name="Score" readOnly value={4} />
+              <Typography variant="h4" gutterBottom>
+                {data.place.name}
+              </Typography>
+              <Grid container spacing={3}>
+                <Desctiption description={data.place.description} />
+                <Photos
+                  name={data.place.name}
+                  imagesSrc={data.place.imagesSrc}
+                  setPopoverImg={setPopoverImg}
+                />
+                {!isEmpty(data.place.activities) && (
+                  <Activities activities={data.place.activities} />
+                )}
+                <ListReviws reviews={data.place.reviews} />
+                <AddReview />
+              </Grid>
+            </>
+          )}
         </Paper>
         <Popover
           id="popover"
@@ -48,7 +59,7 @@ const PlaceModal = ({
             horizontal: 'center',
           }}
         >
-          <img src={popoverImg} alt={name} className={classes.img} />
+          <img src={popoverImg} alt={data && data.place.name} className={classes.img} />
         </Popover>
       </Container>
     </Modal>
@@ -58,9 +69,7 @@ const PlaceModal = ({
 PlaceModal.propTypes = {
   open: bool.isRequired,
   handleClose: func.isRequired,
-  place: shape({
-    name: string,
-  }).isRequired,
+  placeId: string.isRequired,
 };
 
 export default PlaceModal;

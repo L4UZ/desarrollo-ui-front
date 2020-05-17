@@ -8,7 +8,7 @@ export default makeStyles(theme => ({
   },
   container: {
     height: '90%',
-    width: '90%',
+    width: '100%',
     overflow: 'hidden',
     outline: 0,
   },
