@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Paper, Container, Typography, Grid, Popover } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { bool, func, string } from 'prop-types';
 import Rating from '@material-ui/lab/Rating';
 import { useQuery } from '@apollo/react-hooks';
@@ -23,10 +24,11 @@ const PlaceModal = ({ open, handleClose, placeId }) => {
     <Modal open={open} onClose={handleClose} className={classes.modal}>
       <Container maxWidth="lg" className={classes.container}>
         <Paper className={classes.content}>
+          <CloseIcon className={classes.closeIcon} onClick={handleClose} />
           {loading && <div>Loading...</div>}
           {data && (
             <>
-              <Rating name="Score" readOnly value={4} />
+              <Rating name="Score" readOnly value={data.place.overallScore || 0} />
               <Typography variant="h4" gutterBottom>
                 {data.place.name}
               </Typography>

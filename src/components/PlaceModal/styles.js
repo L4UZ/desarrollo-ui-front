@@ -17,6 +17,8 @@ export default makeStyles(theme => ({
     width: '100%',
     padding: '5%',
     overflow: 'auto',
+    position: 'relative',
+
     '&::-webkit-scrollbar-track': {
       WebkitBoxShadow: `inset 0 0 6px ${fade(theme.palette.common.black, 0.3)}`,
       borderRadius: '0.62rem',
@@ -32,6 +34,16 @@ export default makeStyles(theme => ({
       WebkitBoxShadow: `inset 0 0 6px ${fade(theme.palette.common.black, 0.3)}`,
       backgroundColor: '#555',
     },
+  },
+  closeIcon: {
+    cursor: 'pointer',
+    height: 'auto',
+    margin: '1rem',
+    padding: '0.5rem',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: '2.5rem',
   },
   img: {
     maxWidth: '100%',
