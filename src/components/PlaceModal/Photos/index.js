@@ -1,33 +1,53 @@
 import React from 'react';
-import { Grid, Typography, GridList, GridListTile, ButtonBase } from '@material-ui/core';
-import { string, arrayOf, func } from 'prop-types';
+import { Grid, Typography, useTheme } from '@material-ui/core';
+import { string, arrayOf } from 'prop-types';
+import Carousel from '@brainhubeu/react-carousel';
 
+import { ArrowLeft, ArrowRight } from './CarouselItems';
 import useStyles from './styles';
 
-const Photos = ({ name, imagesSrc, setPopoverImg }) => {
+const Photos = ({ name, imagesSrc }) => {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Grid item xs={12} className={classes.gridItem}>
       <Typography variant="h6" gutterBottom>
         Photos
       </Typography>
-      <GridList cellHeight={200} className={classes.sideScroller} cols={3}>
+      <Carousel
+        className={classes.carousel}
+        dots
+        addArrowClickHandler
+        autoPlay={3000}
+        stopAutoPlayOnHover
+        arrowLeft={<ArrowLeft />}
+        arrowRight={<ArrowRight />}
+        infinite
+        centered
+        slidesPerPage={1.3}
+        breakpoints={{
+          [theme.breakpoints.values.sm]: {
+            arrowLeft: null,
+            arrowRight: null,
+            slidesPerPage: 1,
+          },
+          [theme.breakpoints.values.md]: {
+            infinite: false,
+            slidesPerPage: 1,
+          },
+          [theme.breakpoints.values.lg]: {
+            centered: true,
+            slidesPerPage: 1.3,
+          },
+        }}
+      >
         {imagesSrc.map(image => (
-          <GridListTile
-            key={`${name}-${image}`}
-            className={classes.photoContainer}
-            classes={{
-              root: classes.gridListTile,
-            }}
-            cols={1}
-          >
-            <ButtonBase focusRipple onClick={() => setPopoverImg(image)}>
-              <img src={image} alt={name} className={classes.img} />
-            </ButtonBase>
-          </GridListTile>
+          <div key={image} className={classes.imgContainer}>
+            <img src={image} alt={name} className={classes.img} />
+          </div>
         ))}
-      </GridList>
+      </Carousel>
     </Grid>
   );
 };
@@ -35,7 +55,6 @@ const Photos = ({ name, imagesSrc, setPopoverImg }) => {
 Photos.propTypes = {
   name: string.isRequired,
   imagesSrc: arrayOf(string).isRequired,
-  setPopoverImg: func.isRequired,
 };
 
 export default Photos;
