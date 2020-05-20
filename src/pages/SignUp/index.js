@@ -15,6 +15,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import { pick } from 'lodash';
 
+import { useAuth } from '../../AuthProvider';
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
 import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
@@ -29,11 +30,17 @@ const initialValues = {
 
 const SignUp = () => {
   const classes = useStyles();
-  const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION);
+  const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION, {
+    onError: err => {
+      console.log(err);
+    },
+  });
+
+  const { setToken } = useAuth();
 
   useEffect(() => {
-    if (data) localStorage.setItem('token', data.signUp);
-  });
+    if (!error && data) setToken(data.signIn);
+  }, [error, data]);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -167,7 +174,11 @@ const SignUp = () => {
           )}
         </Formik>
         {loading && <CircularProgress />}
-        {error && <Alert severity="error">Account already exists</Alert>}
+        {error && (
+          <Alert severity="error" className={classes.errorMessage}>
+            Account already exists
+          </Alert>
+        )}
       </div>
     </Container>
   );
