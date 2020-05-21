@@ -14,17 +14,24 @@ import { useMutation } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 
+import { useAuth } from '../../AuthProvider';
 import useStyles from './styles';
 import { signInSchema } from '../../constants/validations';
 import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
 
 const SignIn = () => {
   const classes = useStyles();
-  const [signIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION);
+  const [signIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION, {
+    onError: () => {},
+  });
+
+  const { setToken } = useAuth();
 
   useEffect(() => {
-    if (data) localStorage.setItem('token', data.signUp);
-  });
+    if (!error && data) setToken(data.signIn);
+  }, [error, data]);
+
+  const goBack = () => {};
 
   return (
     <Container component="main" maxWidth="sm">
@@ -41,6 +48,7 @@ const SignIn = () => {
           onSubmit={(values, { resetForm }) => {
             signIn({ variables: { credentials: values } });
             resetForm();
+            goBack();
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
@@ -105,7 +113,11 @@ const SignIn = () => {
           )}
         </Formik>
         {loading && <CircularProgress />}
-        {error && <Alert severity="error">Wrong email or password</Alert>}
+        {error && (
+          <Alert severity="error" className={classes.errorMessage}>
+            Wrong email or password
+          </Alert>
+        )}
       </div>
     </Container>
   );

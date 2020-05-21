@@ -8,6 +8,7 @@ import App from './App';
 
 import apiClient from './api/apiClient';
 import { theme } from './constants/theme';
+import AuthProvider from './AuthProvider';
 
 import 'typeface-roboto';
 
@@ -15,9 +16,11 @@ ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={apiClient}>
-        <App />
-      </ApolloProvider>
+      <AuthProvider>
+        <ApolloProvider client={apiClient}>
+          <App />
+        </ApolloProvider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
