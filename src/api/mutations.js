@@ -8,9 +8,7 @@ export const SIGN_UP_MUTATION = gql`
 
 export const SIGN_IN_MUTATION = gql`
   mutation SignIn($credentials: CredentialsInput!) {
-    login(credentials: $credentials) {
-      token
-    }
+    signIn(credentials: $credentials)
   }
 `;
 
