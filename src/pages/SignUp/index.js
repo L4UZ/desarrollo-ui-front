@@ -31,9 +31,7 @@ const initialValues = {
 const SignUp = () => {
   const classes = useStyles();
   const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION, {
-    onError: err => {
-      console.log(err);
-    },
+    onError: () => {},
   });
 
   const { setToken } = useAuth();

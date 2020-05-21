@@ -22,9 +22,7 @@ import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
 const SignIn = () => {
   const classes = useStyles();
   const [signIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION, {
-    onError: err => {
-      console.log(err);
-    },
+    onError: () => {},
   });
 
   const { setToken } = useAuth();
