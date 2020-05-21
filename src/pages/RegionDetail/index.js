@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Typography, Grid, Container } from '@material-ui/core';
+import React from 'react';
+import { Grid, Container } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import PlaceItem from '../../components/PlaceItem';
-import PlaceModal from '../../components/PlaceModal';
 import { REGION_DETAIL } from '../../api/queries';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const RegionDetail = () => {
   const { regionId } = useParams();
-  const [selectedPlaceId, setSelectedPlaceId] = useState(null);
   const { data, loading } = useQuery(REGION_DETAIL, { variables: { regionId } });
 
   if (loading) return <div>loading..</div>;
@@ -17,19 +16,12 @@ const RegionDetail = () => {
 
   return (
     <Container>
-      <Typography variant="h2">{region.name}</Typography>
+      <Breadcrumbs regionId={regionId} depth={1} text={region.name} />
       <Grid container spacing={3}>
         {region.places.map(place => (
-          <PlaceItem key={place.id} place={place} onClick={() => setSelectedPlaceId(place.id)} />
+          <PlaceItem key={place.id} regionId={regionId} place={place} />
         ))}
       </Grid>
-      {selectedPlaceId && (
-        <PlaceModal
-          open={!!selectedPlaceId}
-          handleClose={() => setSelectedPlaceId(null)}
-          placeId={selectedPlaceId}
-        />
-      )}
     </Container>
   );
 };

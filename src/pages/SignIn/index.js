@@ -16,7 +16,7 @@ import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './styles';
 import { signInSchema } from '../../constants/validations';
-import { SIGN_IN_MUTATION } from '../../api/mutations/user-mutations';
+import { SIGN_IN_MUTATION } from '../../api/mutations';
 
 const SignIn = () => {
   const classes = useStyles();

@@ -23,8 +23,10 @@ const Reviews = ({ reviews }) => {
           <Grid item>
             <Paper elevation={2} className={classes.reviews}>
               <Rating name="Score" readOnly value={review.score} />
-              <Typography variant="body1">Comment: {review.comment}</Typography>
-              <Typography variant="caption">By: Name - email</Typography>
+              <Typography variant="body1">{review.comment}</Typography>
+              <Typography variant="caption">
+                By: {review.userFullName} ({review.userEmail})
+              </Typography>
             </Paper>
           </Grid>
         ))}
