@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid, Container, CircularProgress } from '@material-ui/core';
+import { Grid, Container, CircularProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
