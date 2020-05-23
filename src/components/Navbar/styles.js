@@ -10,6 +10,9 @@ export default makeStyles(theme => ({
   signButton: {
     color: theme.palette.common.white,
   },
+  navbar: {
+    minHeight: '64px',
+  },
   navBarContainer: {
     display: 'flex',
     flexDirection: 'row',

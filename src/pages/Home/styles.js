@@ -19,7 +19,7 @@ export default makeStyles(() => ({
   landingImg: {
     objectFit: 'cover',
     width: '100%',
-    height: '100vh',
+    height: 'calc(100vh - 64px)',
   },
   spinner: {
     marginTop: '4rem',
