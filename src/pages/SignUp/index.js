@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import {
   Avatar,
@@ -12,13 +12,14 @@ import {
 import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { pick } from 'lodash';
 
 import { useAuth } from '../../AuthProvider';
-import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
 import { SIGN_UP_MUTATION } from '../../api/mutations';
+import { ADD_REVIEW_LOCATION } from '../../constants/localStorageKeys';
+import useStyles from './styles';
 
 const initialValues = {
   email: '',
@@ -30,15 +31,21 @@ const initialValues = {
 
 const SignUp = () => {
   const classes = useStyles();
-  const [signUp, { data, loading, error }] = useMutation(SIGN_UP_MUTATION, {
-    onError: () => {},
-  });
-
+  const { push: pushToHistory } = useHistory();
   const { setToken } = useAuth();
 
-  useEffect(() => {
-    if (!error && data) setToken(data.signIn);
-  }, [error, data]);
+  const previousLocation = localStorage.getItem(ADD_REVIEW_LOCATION) || null;
+
+  const [signUp, { loading, error }] = useMutation(SIGN_UP_MUTATION, {
+    onCompleted: ({ signIn: token }) => {
+      setToken(token);
+
+      if (previousLocation) localStorage.removeItem(ADD_REVIEW_LOCATION);
+
+      pushToHistory(previousLocation || '/');
+    },
+    onError: () => {},
+  });
 
   return (
     <Container component="main" maxWidth="sm">

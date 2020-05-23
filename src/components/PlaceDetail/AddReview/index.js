@@ -4,17 +4,34 @@ import Rating from '@material-ui/lab/Rating';
 import { Formik } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
 import { string } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
+import { ADD_REVIEW_LOCATION } from '../../../constants/localStorageKeys';
+import { useAuth } from '../../../AuthProvider/index';
 import useStyles from './styles';
 import { ADD_REVIEW_MUTATION } from '../../../api/mutations';
+import { PLACE_DETAIL } from '../../../api/queries';
 
-const AddReview = ({ placeId }) => {
+const AddReview = ({ regionId, placeId }) => {
   const classes = useStyles();
-  const [addReview, { data, loading, error }] = useMutation(ADD_REVIEW_MUTATION);
+  const { push: pushToHistory } = useHistory();
+  const { token } = useAuth();
 
-  // TODO: Require logged in user to add review
-  // TODO: Add data to local state
-  // TODO: Handle error
+  const [addReview, { loading }] = useMutation(ADD_REVIEW_MUTATION, {
+    update(cache, { data: { addReview: addedReview } }) {
+      const { place } = cache.readQuery({ query: PLACE_DETAIL, variables: { placeId } });
+      cache.writeQuery({
+        query: PLACE_DETAIL,
+        variables: { placeId },
+        data: { place: { ...place, reviews: [...place.reviews, addedReview] } },
+      });
+    },
+  });
+
+  const redirectToLogin = () => {
+    localStorage.setItem(ADD_REVIEW_LOCATION, `region-detail/${regionId}/${placeId}`);
+    pushToHistory('/signin');
+  };
 
   return (
     <Grid item xs={12} className={classes.gridItem}>
@@ -30,11 +47,11 @@ const AddReview = ({ placeId }) => {
                 comment,
                 score: +score,
                 placeId,
-                // token,
+                token,
               },
             },
           });
-          resetForm();
+          resetForm({ values: { score: 0 } });
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
@@ -56,7 +73,7 @@ const AddReview = ({ placeId }) => {
                   fullWidth
                   helperText={touched.comment && errors.comment}
                   id="comment"
-                  label="comment"
+                  label="Comment"
                   margin="normal"
                   multiline
                   name="comment"
@@ -85,12 +102,28 @@ const AddReview = ({ placeId }) => {
           </form>
         )}
       </Formik>
+      {!token && (
+        <div className={classes.overlay}>
+          <Button
+            className={classes.overlayButton}
+            color="secondary"
+            disabled={loading}
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={redirectToLogin}
+          >
+            Sign in
+          </Button>
+        </div>
+      )}
     </Grid>
   );
 };
 
 AddReview.propTypes = {
   placeId: string.isRequired,
+  regionId: string.isRequired,
 };
 
 export default AddReview;

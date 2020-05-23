@@ -15,8 +15,11 @@ export const SIGN_IN_MUTATION = gql`
 export const ADD_REVIEW_MUTATION = gql`
   mutation AddReview($review: ReviewInput!) {
     addReview(review: $review) {
+      id
       comment
       score
+      userFullName
+      userEmail
     }
   }
 `;

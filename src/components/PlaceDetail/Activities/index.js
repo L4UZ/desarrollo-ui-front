@@ -26,10 +26,10 @@ const Activities = ({ activities }) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={3} direction="column">
-            {activities.map(activitiy => (
-              <Grid item>
-                <Typography variant="body1">{activitiy.name}</Typography>
-                <Typography variant="body2">${activitiy.price}</Typography>
+            {activities.map(activity => (
+              <Grid item key={activity.id}>
+                <Typography variant="body1">{activity.name}</Typography>
+                <Typography variant="body2">${activity.price}</Typography>
               </Grid>
             ))}
           </Grid>

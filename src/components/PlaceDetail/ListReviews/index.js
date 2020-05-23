@@ -20,7 +20,7 @@ const Reviews = ({ reviews }) => {
           </Grid>
         )}
         {reviews.map(review => (
-          <Grid item>
+          <Grid item key={review.id}>
             <Paper elevation={2} className={classes.reviews}>
               <Rating name="Score" readOnly value={review.score} />
               <Typography variant="body1">{review.comment}</Typography>

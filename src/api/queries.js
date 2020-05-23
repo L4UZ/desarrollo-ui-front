@@ -37,10 +37,12 @@ export const PLACE_DETAIL = gql`
       name
       imagesSrc
       activities {
+        id
         name
         price
       }
       reviews {
+        id
         comment
         score
         userEmail
