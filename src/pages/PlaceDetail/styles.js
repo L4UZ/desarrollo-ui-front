@@ -15,8 +15,8 @@ export default makeStyles(theme => ({
   content: {
     height: '100%',
     width: '100%',
-    padding: '2%',
-    overflow: 'auto',
+    paddingTop: '1.5rem',
+    overflow: 'visible',
     position: 'relative',
 
     '&::-webkit-scrollbar-track': {
@@ -56,5 +56,8 @@ export default makeStyles(theme => ({
   spinner: {
     marginTop: '4rem',
     margin: 'auto',
+  },
+  breadcrumbs: {
+    color: 'red',
   },
 }));

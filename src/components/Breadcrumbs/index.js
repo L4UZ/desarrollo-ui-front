@@ -5,9 +5,11 @@ import { string, number } from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { HashLink as Link } from 'react-router-hash-link';
 
+import useStyles from './styles';
 import { REGION_DETAIL } from '../../api/queries';
 
 const Breadcrumbs = ({ regionId, depth, text: lastItemText }) => {
+  const classes = useStyles();
   const { data, loading } = useQuery(REGION_DETAIL, {
     variables: { regionId },
   });
@@ -29,7 +31,7 @@ const Breadcrumbs = ({ regionId, depth, text: lastItemText }) => {
             <Button>{text}</Button>
           </Link>
         ))}
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom className={classes.lastItem}>
         {lastItemText}
       </Typography>
     </MUIBreadcrumbs>

@@ -33,7 +33,12 @@ const PlaceDetail = () => {
         )}
         {!loading && data && data.place && (
           <>
-            <Breadcrumbs regionId={regionId} depth={2} text={data.place.name} />
+            <Breadcrumbs
+              regionId={regionId}
+              depth={2}
+              text={data.place.name}
+              classes={{ li: classes.breadcrumbs }}
+            />
             <Rating name="Score" readOnly value={data.place.overallScore || 0} />
             <Grid container spacing={3}>
               <Description description={data.place.description} />
