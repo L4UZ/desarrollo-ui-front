@@ -5,7 +5,7 @@ import '@brainhubeu/react-carousel/lib/style.css';
 
 function App() {
   return (
-    <div>
+    <div style={{ margin: '4rem 0 2.5rem' }}>
       <Router />
     </div>
   );
