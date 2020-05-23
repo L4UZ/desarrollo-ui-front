@@ -13,9 +13,6 @@ const RegionDetail = () => {
   const { regionId } = useParams();
   const { data, loading } = useQuery(REGION_DETAIL, { variables: { regionId } });
 
-  if (loading) return <div>loading..</div>;
-  const { region } = data;
-
   return (
     <Container className={classes.container}>
       {loading ? (
@@ -26,9 +23,9 @@ const RegionDetail = () => {
         </Grid>
       ) : (
         <div>
-          <Breadcrumbs regionId={regionId} depth={1} text={region.name} />
+          <Breadcrumbs regionId={regionId} depth={1} text={data.region.name} />
           <Grid container spacing={3} className={classes.items}>
-            {region.places.map(place => (
+            {data.region.places.map(place => (
               <PlaceItem key={place.id} regionId={regionId} place={place} />
             ))}
           </Grid>
