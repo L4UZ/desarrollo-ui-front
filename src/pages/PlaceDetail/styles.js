@@ -15,7 +15,7 @@ export default makeStyles(theme => ({
   content: {
     height: '100%',
     width: '100%',
-    padding: '5%',
+    padding: '2%',
     overflow: 'auto',
     position: 'relative',
 
@@ -52,5 +52,9 @@ export default makeStyles(theme => ({
     overflow: 'hidden',
     minHeight: '14rem',
     minWidth: '20rem',
+  },
+  spinner: {
+    marginTop: '4rem',
+    margin: 'auto',
   },
 }));

@@ -7,6 +7,7 @@ export default makeStyles(() => ({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     width: '100%',
+    marginTop: '0.5rem',
   },
   gridItem: {
     display: 'flex',

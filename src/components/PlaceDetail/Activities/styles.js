@@ -6,4 +6,7 @@ export default makeStyles(() => ({
     position: 'relative',
     padding: 0,
   },
+  divider: {
+    marginTop: '1rem',
+  },
 }));

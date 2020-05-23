@@ -5,6 +5,8 @@ import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
+  Box,
+  Divider,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { arrayOf, object } from 'prop-types';
@@ -16,7 +18,7 @@ const Activities = ({ activities }) => {
 
   return (
     <Grid item xs={12} className={classes.gridItem}>
-      <ExpansionPanel>
+      <ExpansionPanel defaultExpanded="true">
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -26,10 +28,18 @@ const Activities = ({ activities }) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={3} direction="column">
-            {activities.map(activitiy => (
+            {activities.map((activity, i) => (
               <Grid item>
-                <Typography variant="body1">{activitiy.name}</Typography>
-                <Typography variant="body2">${activitiy.price}</Typography>
+                <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                  <Typography variant="body1" noWrap style={{ flexDirection: 'column' }}>
+                    <Box fontWeight="fontWeightBold">{activity.name}</Box>
+                  </Typography>
+                  <Typography variant="body1" noWrap style={{ marginLeft: 5 }}>
+                    - ${activity.price}
+                  </Typography>
+                </div>
+                <Typography variant="body2">{activity.description}</Typography>
+                {i !== activities.length - 1 && <Divider className={classes.divider} />}
               </Grid>
             ))}
           </Grid>

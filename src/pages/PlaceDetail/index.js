@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Paper, Container, Grid, Popover } from '@material-ui/core';
+import { Container, Grid, Popover, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import { useQuery } from '@apollo/react-hooks';
 import { isEmpty } from 'lodash';
 import { useParams } from 'react-router-dom';
 
 import useStyles from './styles';
-import Desctiption from '../../components/PlaceDetail/Description';
+import Description from '../../components/PlaceDetail/Description';
 import Photos from '../../components/PlaceDetail/Photos';
 import Activities from '../../components/PlaceDetail/Activities';
 import ListReviws from '../../components/PlaceDetail/ListReviews';
@@ -23,14 +23,20 @@ const PlaceDetail = () => {
 
   return (
     <Container maxWidth="lg" className={classes.container}>
-      <Paper className={classes.content}>
-        {loading && <div>Loading...</div>}
+      <div className={classes.content}>
+        {loading && (
+          <Grid container spacing={2} direction="column">
+            <Grid item xl={12} className={classes.spinner}>
+              <CircularProgress />
+            </Grid>
+          </Grid>
+        )}
         {!loading && data && data.place && (
           <>
             <Breadcrumbs regionId={regionId} depth={2} text={data.place.name} />
             <Rating name="Score" readOnly value={data.place.overallScore || 0} />
             <Grid container spacing={3}>
-              <Desctiption description={data.place.description} />
+              <Description description={data.place.description} />
               <Photos
                 name={data.place.name}
                 imagesSrc={data.place.imagesSrc}
@@ -42,7 +48,7 @@ const PlaceDetail = () => {
             </Grid>
           </>
         )}
-      </Paper>
+      </div>
       <Popover
         id="popover"
         open={!!popoverImg}
