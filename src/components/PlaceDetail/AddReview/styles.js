@@ -1,9 +1,13 @@
 import { makeStyles, fade } from '@material-ui/core';
 
 export default makeStyles(({ palette, shape: { borderRadius } }) => ({
+  container: {
+    padding: '1rem',
+    margin: '0.6rem 0 0.4rem',
+    position: 'relative',
+  },
   gridItem: {
     marginTop: '1rem',
-    position: 'relative',
     padding: 0,
   },
   buttonWrapper: {
