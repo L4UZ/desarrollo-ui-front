@@ -1,16 +1,24 @@
 import { makeStyles, fade } from '@material-ui/core';
 
 export default makeStyles(theme => ({
-  gridItem: {
-    marginTop: '1rem',
-    position: 'relative',
-    padding: 0,
+  modal: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  sideScroller: {
+  container: {
+    height: '90%',
+    width: '100%',
+    overflow: 'hidden',
+    outline: 0,
+  },
+  content: {
+    height: '100%',
+    width: '100%',
+    padding: '5%',
     overflow: 'auto',
-    flexWrap: 'nowrap',
-    transform: 'translateZ(0)',
-    paddingBottom: '0.4rem',
+    position: 'relative',
+
     '&::-webkit-scrollbar-track': {
       WebkitBoxShadow: `inset 0 0 6px ${fade(theme.palette.common.black, 0.3)}`,
       borderRadius: '0.62rem',
@@ -19,7 +27,7 @@ export default makeStyles(theme => ({
     '&::-webkit-scrollbar': {
       width: '0.75rem',
       backgroundColor: '#F5F5F5',
-      height: '0.5rem',
+      height: '1rem',
     },
     '&::-webkit-scrollbar-thumb': {
       borderRadius: '0.62rem',
@@ -27,12 +35,15 @@ export default makeStyles(theme => ({
       backgroundColor: '#555',
     },
   },
-  photoContainer: {
-    width: '20rem',
-  },
-  gridListTile: {
-    minWidth: '20rem',
-    marginRight: '0.2rem',
+  closeIcon: {
+    cursor: 'pointer',
+    height: 'auto',
+    margin: '1rem',
+    padding: '0.5rem',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: '2.5rem',
   },
   img: {
     maxWidth: '100%',

@@ -17,6 +17,9 @@ export const CONTINENTS = gql`
 export const REGION_DETAIL = gql`
   query RegionDetail($regionId: String!) {
     region(id: $regionId) {
+      id
+      continentId
+      continentName
       name
       places {
         id

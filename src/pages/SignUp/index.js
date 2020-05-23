@@ -18,7 +18,7 @@ import { pick } from 'lodash';
 import { useAuth } from '../../AuthProvider';
 import useStyles from './styles';
 import { signUpSchema } from '../../constants/validations';
-import { SIGN_UP_MUTATION } from '../../api/mutations/user-mutations';
+import { SIGN_UP_MUTATION } from '../../api/mutations';
 
 const initialValues = {
   email: '',

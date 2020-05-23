@@ -11,3 +11,12 @@ export const SIGN_IN_MUTATION = gql`
     signIn(credentials: $credentials)
   }
 `;
+
+export const ADD_REVIEW_MUTATION = gql`
+  mutation AddReview($review: ReviewInput!) {
+    addReview(review: $review) {
+      comment
+      score
+    }
+  }
+`;

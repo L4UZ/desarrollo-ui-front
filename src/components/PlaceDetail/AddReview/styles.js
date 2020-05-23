@@ -6,13 +6,12 @@ export default makeStyles(() => ({
     position: 'relative',
     padding: 0,
   },
-  reviewComment: {
-    paddingBottom: '2rem',
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
-  reviewButton: {
-    margin: '0.5rem 0.8rem 0 0',
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
+  submit: {
+    width: 'fit-content',
+    padding: '0.5rem 2rem',
   },
 }));
