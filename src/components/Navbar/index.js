@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container, Button, AppBar, Typography, Toolbar } from '@material-ui/core';
+import { Container, Button, AppBar, Toolbar, SvgIcon } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../AuthProvider';
 import useStyles from './styles';
 import routes from '../../constants/routes';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -21,10 +22,10 @@ const Navbar = () => {
             }}
           >
             <div>
-              <Link to={routes.default.path} className={classes.link}>
-                <Typography variant="h6" className={classes.title}>
-                  UTravel
-                </Typography>
+              <Link to={routes.default.path} className={`${classes.link} ${classes.logo}`}>
+                <SvgIcon fontSize="large" className={classes.logo} viewBox="0 0 56 24">
+                  <Logo />
+                </SvgIcon>
               </Link>
             </div>
             {token ? (
