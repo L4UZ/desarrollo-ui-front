@@ -30,8 +30,8 @@ const Activities = ({ activities }) => {
           <Grid container spacing={3} direction="column">
             {activities.map((activity, i) => (
               <Grid item key={activity.id}>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Typography variant="body1" noWrap style={{ flexDirection: 'column' }}>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="body1" noWrap>
                     <Box fontWeight="fontWeightBold">{activity.name}</Box>
                   </Typography>
                   <Typography variant="body1" noWrap style={{ marginLeft: 5 }}>
