@@ -1,11 +1,13 @@
 import React from 'react';
-import { Grid, Container, CircularProgress } from '@material-ui/core';
+import { Grid, Container, CircularProgress, Typography, Button, SvgIcon } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import ContinentDetail from '../../components/ContinentDetail';
 import { CONTINENTS } from '../../api/queries';
 import ContinentAnchors from '../../components/ContinentAnchors';
+import { ReactComponent as Logo } from '../../assets/logo-extended.svg';
 
 const Home = () => {
   const classes = useStyles();
@@ -19,6 +21,21 @@ const Home = () => {
           alt="background"
           className={classes.landingImg}
         />
+        <div className={classes.landingText}>
+          <div>
+            <SvgIcon fontSize="large" className={classes.logo} viewBox="0 0 56 24">
+              <Logo />
+            </SvgIcon>
+          </div>
+          <Typography variant="h4" className={classes.subtitle}>
+            Find your next adventure
+          </Typography>
+          <Link to="/signup" className={classes.link}>
+            <Button variant="contained" color="secondary" size="large">
+              REGISTER NOW!
+            </Button>
+          </Link>
+        </div>
       </div>
       <Container component="main" className={classes.container}>
         {data && <ContinentAnchors continents={data.continents} />}

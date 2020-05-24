@@ -15,4 +15,7 @@ export default makeStyles(theme => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  logo: {
+    width: '5rem',
+  },
 }));
