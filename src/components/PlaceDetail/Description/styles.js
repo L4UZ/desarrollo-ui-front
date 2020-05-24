@@ -6,4 +6,7 @@ export default makeStyles(() => ({
     position: 'relative',
     padding: 0,
   },
+  description: {
+    paddingRight: '20rem',
+  },
 }));
