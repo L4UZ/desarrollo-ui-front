@@ -27,10 +27,10 @@ const Activities = ({ activities }) => {
           <Typography variant="h6">Activities</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Grid container spacing={3} direction="column">
+          <Grid container spacing={3} direction="column" className={classes.activity}>
             {activities.map((activity, i) => (
               <Grid item key={activity.id}>
-                <div style={{ display: 'flex' }}>
+                <div className={classes.activityTitle}>
                   <Typography variant="body1" noWrap>
                     <Box fontWeight="fontWeightBold">{activity.name}</Box>
                   </Typography>

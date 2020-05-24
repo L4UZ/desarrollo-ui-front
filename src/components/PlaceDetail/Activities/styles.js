@@ -9,4 +9,11 @@ export default makeStyles(() => ({
   divider: {
     marginTop: '1rem',
   },
+  activityTitle: {
+    display: 'flex',
+    flexFlow: 'wrap',
+  },
+  activity: {
+    display: 'inline-block',
+  },
 }));
