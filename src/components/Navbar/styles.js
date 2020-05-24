@@ -12,11 +12,14 @@ export default makeStyles(theme => ({
   },
   navbar: {
     minHeight: '64px',
+    display: 'flex',
+    justifyContent: 'center',
   },
   navBarContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
   logo: {
     width: '5rem',

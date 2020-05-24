@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Grid, Popover, CircularProgress } from '@material-ui/core';
+import React from 'react';
+import { Container, Grid, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import { useQuery } from '@apollo/react-hooks';
 import { isEmpty } from 'lodash';
@@ -16,7 +16,6 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 
 const PlaceDetail = () => {
   const classes = useStyles();
-  const [popoverImg, setPopoverImg] = useState(null);
   const { regionId, placeId } = useParams();
 
   const { data, loading } = useQuery(PLACE_DETAIL, { variables: { placeId } });
@@ -42,11 +41,7 @@ const PlaceDetail = () => {
             <Rating name="Score" readOnly value={data.place.overallScore || 0} />
             <Grid container spacing={3}>
               <Description description={data.place.description} />
-              <Photos
-                name={data.place.name}
-                imagesSrc={data.place.imagesSrc}
-                setPopoverImg={setPopoverImg}
-              />
+              <Photos name={data.place.name} imagesSrc={data.place.imagesSrc} />
               {!isEmpty(data.place.activities) && <Activities activities={data.place.activities} />}
               <ListReviws reviews={data.place.reviews} />
               <AddReview regionId={regionId} placeId={placeId} />
@@ -54,21 +49,6 @@ const PlaceDetail = () => {
           </>
         )}
       </div>
-      <Popover
-        id="popover"
-        open={!!popoverImg}
-        onClose={() => setPopoverImg(null)}
-        anchorOrigin={{
-          vertical: 'center',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'center',
-          horizontal: 'center',
-        }}
-      >
-        <img src={popoverImg} alt={data && data.place.name} className={classes.img} />
-      </Popover>
     </Container>
   );
 };
