@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <Container>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
           <Container
             classes={{

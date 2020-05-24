@@ -35,11 +35,13 @@ export const PLACE_DETAIL = gql`
     place(id: $placeId) {
       id
       name
+      description
       imagesSrc
       activities {
         id
         name
         price
+        description
       }
       reviews {
         id

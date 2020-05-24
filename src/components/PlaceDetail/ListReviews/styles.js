@@ -8,6 +8,6 @@ export default makeStyles(() => ({
   },
   reviews: {
     padding: '1rem',
-    margin: '0.6rem 0 0.4rem',
+    margin: '-1rem 0 0rem',
   },
 }));
