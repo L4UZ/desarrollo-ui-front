@@ -53,6 +53,6 @@ export default makeStyles(theme => ({
     bottom: 0,
     width: '100%',
     objectFit: 'cover',
-    padding: '0 .5rem',
+    padding: '0 .2rem',
   },
 }));
