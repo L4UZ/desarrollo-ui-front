@@ -49,7 +49,7 @@ const PlaceDetail = () => {
               />
               {!isEmpty(data.place.activities) && <Activities activities={data.place.activities} />}
               <ListReviws reviews={data.place.reviews} />
-              <AddReview placeId={placeId} />
+              <AddReview regionId={regionId} placeId={placeId} />
             </Grid>
           </>
         )}
