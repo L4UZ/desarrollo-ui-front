@@ -46,4 +46,9 @@ export default makeStyles(({ palette, shape: { borderRadius } }) => ({
     width: 'fit-content',
     padding: '0.5rem 1.5rem',
   },
+  loading: {
+    position: 'absolute',
+    bottom: '0.5rem',
+    left: '1rem',
+  },
 }));
