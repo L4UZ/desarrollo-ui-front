@@ -12,9 +12,15 @@ const Description = ({ description }) => {
       <Typography variant="h6" gutterBottom>
         Place description
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        {description}
-      </Typography>
+      {description !== null ? (
+        <Typography variant="body1" gutterBottom>
+          {description}
+        </Typography>
+      ) : (
+        <Typography variant="body1" gutterBottom>
+          No description provided
+        </Typography>
+      )}
     </Grid>
   );
 };

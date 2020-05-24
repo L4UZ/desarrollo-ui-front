@@ -14,11 +14,11 @@ export default makeStyles(({ palette }) => ({
     zIndex: 1,
   },
   left: {
-    background: 'linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)',
+    background: 'linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)',
     left: 0,
   },
   right: {
-    background: 'linear-gradient(270deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)',
+    background: 'linear-gradient(270deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)',
     right: 0,
   },
 }));
