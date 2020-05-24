@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Button, TextField, Paper } from '@material-ui/core';
+import { Grid, Typography, Button, TextField, Paper, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import { Formik } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
@@ -52,7 +52,7 @@ const AddReview = ({ regionId, placeId }) => {
                 },
               },
             });
-            resetForm({ values: { score: 0 } });
+            resetForm();
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
@@ -65,6 +65,7 @@ const AddReview = ({ regionId, placeId }) => {
                     name="score"
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    value={values.score}
                     size="large"
                   />
                 </Grid>
@@ -103,6 +104,7 @@ const AddReview = ({ regionId, placeId }) => {
             </form>
           )}
         </Formik>
+        {loading && <CircularProgress className={classes.loading} />}
         {!token && (
           <div className={classes.overlay}>
             <Button
