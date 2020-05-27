@@ -2,10 +2,10 @@ import React from 'react';
 import {
   Grid,
   Typography,
-  Paper,
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
+  Divider,
 } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -33,15 +33,16 @@ const Reviews = ({ reviews }) => {
                 <Typography variant="body1">No reviews yet.</Typography>
               </Grid>
             )}
-            {reviews.map(review => (
+            {reviews.map((review, i) => (
               <Grid item key={review.id}>
-                <Paper elevation={1} className={classes.reviews}>
+                <div className={classes.reviews}>
                   <Rating name="Score" readOnly value={review.score} />
                   <Typography variant="body1">{review.comment}</Typography>
                   <Typography variant="caption">
                     By: {review.userFullName} ({review.userEmail})
                   </Typography>
-                </Paper>
+                </div>
+                {i !== reviews.length - 1 && <Divider className={classes.divider} />}
               </Grid>
             ))}
           </Grid>

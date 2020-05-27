@@ -7,7 +7,10 @@ export default makeStyles(() => ({
     padding: 0,
   },
   reviews: {
-    padding: '1rem',
+    padding: '0.5rem',
     margin: '-1rem 0 0rem',
+  },
+  divider: {
+    marginTop: '0.5rem',
   },
 }));

@@ -40,8 +40,8 @@ const PlaceDetail = () => {
             />
             <Rating name="Score" readOnly value={data.place.overallScore || 0} />
             <Grid container spacing={3}>
-              <Description description={data.place.description} />
               <Photos name={data.place.name} imagesSrc={data.place.imagesSrc} />
+              <Description description={data.place.description} />
               {!isEmpty(data.place.activities) && <Activities activities={data.place.activities} />}
               <ListReviws reviews={data.place.reviews} />
               <AddReview regionId={regionId} placeId={placeId} />
