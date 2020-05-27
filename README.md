@@ -22,8 +22,26 @@
   - Photos
     - Carousel
   - Activities
+    - ExpansionPanel
   - ListReviews
+    - ExpansionPanel
   - AddReview
+    - Form
+      - Rating
+      - TextField
+      - Button
+
+- **SignIn**
+
+  - Typography
+  - Form
+  - Button
+
+- **SignUp**
+
+  - Typography
+  - Form
+  - Button
 
 ### New development environment configuration instructions
 
