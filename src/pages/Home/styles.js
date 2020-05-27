@@ -48,4 +48,16 @@ export default makeStyles(() => ({
     maxWidth: '90%',
     height: 'auto',
   },
+  scrollContainer: {
+    position: 'absolute',
+    bottom: '1rem',
+    left: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  scrollIcon: {
+    width: '4rem',
+    height: 'auto',
+  },
 }));
