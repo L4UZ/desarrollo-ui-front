@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Grid, Container, CircularProgress, Typography, Button, SvgIcon } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
+import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 
 import useStyles from './styles';
 import ContinentDetail from '../../components/ContinentDetail';
@@ -32,8 +35,19 @@ const Home = () => {
           </Typography>
           <Link to="/signup" className={classes.link}>
             <Button variant="contained" color="secondary" size="large">
-              REGISTER NOW!
+              START YOUR ADVENTURE!
             </Button>
+          </Link>
+        </div>
+        <div className={classes.scrollContainer}>
+          <a name="anchors" id="anchors" />
+
+          <Link smooth className={classes.linkContainer} to="#anchors">
+            <ArrowDropDownCircleIcon
+              color="action"
+              fontSize="large"
+              className={classes.scrollIcon}
+            />
           </Link>
         </div>
       </div>
