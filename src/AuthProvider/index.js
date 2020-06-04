@@ -1,11 +1,24 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const Provider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const value = { token, setToken };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) setToken(storedToken);
+  }, []);
+
+  const setTokenOverride = newToken => {
+    if (!newToken) localStorage.removeItem('token');
+    else localStorage.setItem('token', newToken);
+
+    setToken(newToken);
+  };
+
+  const value = { token, setToken: setTokenOverride };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
