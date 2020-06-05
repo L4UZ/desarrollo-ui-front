@@ -45,8 +45,8 @@ const AddTripModal = ({ isOpened, handleClose }) => {
           <Typography variant="h4">New trip</Typography>
           <Formik
             initialValues={{ name: '' }}
-            onSubmit={({ values: { name } }, { resetForm }) => {
-              addTrip({ variables: { trip: { token, name } } });
+            onSubmit={(values, { resetForm }) => {
+              addTrip({ variables: { trip: { token, name: values.name } } });
               resetForm();
               handleClose();
             }}

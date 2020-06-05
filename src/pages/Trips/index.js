@@ -13,6 +13,7 @@ import AddTripModal from '../../components/AddTripModal';
 const Trips = () => {
   const classes = useStyles();
   const { token } = useAuth();
+
   const { data, loading } = useQuery(USER_TRIPS, { variables: { token } });
 
   const [open, setOpen] = useState(false);
