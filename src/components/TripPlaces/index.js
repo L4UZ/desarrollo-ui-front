@@ -5,18 +5,18 @@ import { string, number, shape } from 'prop-types';
 
 import useStyles from './styles';
 
-const RegionItem = ({ region: { id, name, imageSrc } }) => {
+const TripPlaces = ({ regionId, place: { id, name, imagesSrc }, index }) => {
   const classes = useStyles();
 
   return (
     <Grid item xs={12} md={6} lg={3}>
-      <Link to={`/region-detail/${id}`} className={classes.link}>
+      <Link to={`/region-detail/${regionId}/${id}`} className={classes.link}>
         <Card className={classes.gridItem}>
           <CardActionArea>
-            <CardMedia className={classes.img} image={imageSrc} title={name} />
+            <CardMedia className={classes.img} image={imagesSrc[0]} title={name} />
             <div className={classes.titleBar}>
               <Typography component="h6" variant="h6">
-                {name}
+                {index + 1}. {name}
               </Typography>
             </div>
           </CardActionArea>
@@ -26,9 +26,10 @@ const RegionItem = ({ region: { id, name, imageSrc } }) => {
   );
 };
 
-RegionItem.propTypes = {
-  region: shape({ id: string, name: string, imageSrc: string, cols: number, rows: number })
-    .isRequired,
+TripPlaces.propTypes = {
+  place: shape({ id: string, name: string, imageSrc: string }).isRequired,
+  index: number.isRequired,
+  regionId: string.isRequired,
 };
 
-export default RegionItem;
+export default TripPlaces;
