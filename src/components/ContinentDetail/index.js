@@ -18,7 +18,7 @@ const ContinentDetail = ({ continent: { id, name, regions } }) => {
       </a>
       <Grid container spacing={2} direction="row">
         {regions.map(region => (
-          <RegionItem key={region.id} region={region} cols={region.cols} />
+          <RegionItem key={region.id} region={region} />
         ))}
       </Grid>
     </div>
@@ -27,8 +27,9 @@ const ContinentDetail = ({ continent: { id, name, regions } }) => {
 
 ContinentDetail.propTypes = {
   continent: shape({
-    type: object,
-    properties: { id: string, name: string, regions: arrayOf(object) },
+    id: string,
+    name: string,
+    regions: arrayOf(object),
   }).isRequired,
 };
 

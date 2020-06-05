@@ -1,16 +1,14 @@
 import React from 'react';
-import { Container, Button, AppBar, Toolbar, SvgIcon } from '@material-ui/core';
+import { Container, AppBar, Toolbar, SvgIcon } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../AuthProvider';
 import useStyles from './styles';
 import routes from '../../constants/routes';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+import NavBarCollapse from '../NavBarCollapse';
 
 const Navbar = () => {
   const classes = useStyles();
-
-  const { token, resetToken } = useAuth();
 
   return (
     <Container>
@@ -28,22 +26,7 @@ const Navbar = () => {
                 </SvgIcon>
               </Link>
             </div>
-            {token ? (
-              <div>
-                <Button className={classes.signButton} onClick={resetToken}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <Link to={routes.signin.path} className={classes.link}>
-                  <Button className={classes.signButton}>Login</Button>
-                </Link>
-                <Link to={routes.signup.path} className={classes.link}>
-                  <Button className={classes.signButton}>Register</Button>
-                </Link>
-              </div>
-            )}
+            <NavBarCollapse />
           </Container>
         </Toolbar>
       </AppBar>

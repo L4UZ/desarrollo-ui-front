@@ -16,4 +16,12 @@ export default makeStyles(theme => ({
   submit: {
     margin: theme.spacing(2, 0, 1),
   },
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '1rem',
+  },
+  errorMessage: {
+    marginTop: '.5rem',
+  },
 }));

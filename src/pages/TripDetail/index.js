@@ -11,7 +11,12 @@ const TripDetail = () => {
   const classes = useStyles();
 
   const { tripId } = useParams();
-  const { data, loading } = useQuery(TRIP, { variables: { tripId } });
+  const {
+    data: {
+      trip: { name, user, places },
+    },
+    loading,
+  } = useQuery(TRIP, { variables: { tripId } });
 
   return (
     <Container component="main" className={classes.container}>
@@ -23,17 +28,17 @@ const TripDetail = () => {
         <div>
           <div>
             <Typography variant="h4" gutterBottom className={classes.title}>
-              {data.trip.name}
+              {name}
             </Typography>
             <Typography variant="overline" gutterBottom className={classes.title}>
               <Typography variant="caption">
-                By: {data.trip.user.firstName}
-                {data.trip.user.lastName} ({data.trip.user.email})
+                By: {user.firstName}
+                {user.lastName} ({user.email})
               </Typography>
             </Typography>
           </div>
           <Grid container spacing={2} direction="row" className={classes.grid}>
-            {data.trip.places.map((place, i) => (
+            {places.map((place, i) => (
               <TripPlaces key={place.id} regionId={place.id} place={place} index={i} />
             ))}
           </Grid>

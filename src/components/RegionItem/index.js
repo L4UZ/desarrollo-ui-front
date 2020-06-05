@@ -5,11 +5,11 @@ import { string, number, shape } from 'prop-types';
 
 import useStyles from './styles';
 
-const RegionItem = ({ region: { id, name, imageSrc }, cols }) => {
+const RegionItem = ({ region: { id, name, imageSrc } }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} md={6} lg={cols * 3 || 3}>
+    <Grid item xs={12} md={6} lg={3}>
       <Link to={`/region-detail/${id}`} className={classes.link}>
         <Card className={classes.gridItem}>
           <CardActionArea>
@@ -29,11 +29,6 @@ const RegionItem = ({ region: { id, name, imageSrc }, cols }) => {
 RegionItem.propTypes = {
   region: shape({ id: string, name: string, imageSrc: string, cols: number, rows: number })
     .isRequired,
-  cols: number,
-};
-
-RegionItem.defaultProps = {
-  cols: 1,
 };
 
 export default RegionItem;

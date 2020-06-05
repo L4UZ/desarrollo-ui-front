@@ -83,10 +83,14 @@ const AddTripModal = ({ isOpened, handleClose }) => {
               </form>
             )}
           </Formik>
-          {loading && <CircularProgress />}
+          {loading && (
+            <div className={classes.spinner}>
+              <CircularProgress />
+            </div>
+          )}
           {error && (
             <Alert severity="error" className={classes.errorMessage}>
-              Account already exists
+              Error creating trip
             </Alert>
           )}
         </Paper>
