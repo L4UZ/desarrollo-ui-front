@@ -14,7 +14,7 @@ export default makeStyles(theme => ({
   link: {
     textDecoration: 'none',
   },
-  signButton: {
+  navButton: {
     color: theme.palette.common.white,
   },
 }));

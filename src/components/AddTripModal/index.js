@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { Formik } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
-import { pick } from 'lodash';
 import { func } from 'prop-types';
 import Alert from '@material-ui/lab/Alert';
 
@@ -46,8 +45,8 @@ const AddTripModal = ({ isOpened, handleClose }) => {
           <Typography variant="h4">New trip</Typography>
           <Formik
             initialValues={{ name: '' }}
-            onSubmit={(values, { resetForm }) => {
-              addTrip({ variables: { trip: { token, name: pick(values, ['name']).name } } });
+            onSubmit={({ values: { name } }, { resetForm }) => {
+              addTrip({ variables: { trip: { token, name } } });
               resetForm();
               handleClose();
             }}

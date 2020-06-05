@@ -19,11 +19,11 @@ const NavBarCollapse = () => {
           <div style={{ display: 'contents' }}>
             <div style={{ flex: 'auto' }}>
               <Link to={routes.trips.path} className={classes.link}>
-                <Button className={classes.signButton}>Trips</Button>
+                <Button className={classes.navButton}>Trips</Button>
               </Link>
             </div>
             <div>
-              <Button className={classes.signButton} onClick={resetToken}>
+              <Button className={classes.navButton} onClick={resetToken}>
                 Logout
               </Button>
             </div>
@@ -31,10 +31,10 @@ const NavBarCollapse = () => {
         ) : (
           <div>
             <Link to={routes.signin.path} className={classes.link}>
-              <Button className={classes.signButton}>Login</Button>
+              <Button className={classes.navButton}>Login</Button>
             </Link>
             <Link to={routes.signup.path} className={classes.link}>
-              <Button className={classes.signButton}>SignUp</Button>
+              <Button className={classes.navButton}>SignUp</Button>
             </Link>
           </div>
         )}
