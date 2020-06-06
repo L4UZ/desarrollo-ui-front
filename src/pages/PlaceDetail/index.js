@@ -13,6 +13,7 @@ import ListReviws from '../../components/PlaceDetail/ListReviews';
 import AddReview from '../../components/PlaceDetail/AddReview';
 import { PLACE_DETAIL } from '../../api/queries';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import AddPlaceTrip from '../../components/AddPlaceTrip';
 
 const PlaceDetail = () => {
   const classes = useStyles();
@@ -45,6 +46,7 @@ const PlaceDetail = () => {
               {!isEmpty(data.place.activities) && <Activities activities={data.place.activities} />}
               <ListReviws reviews={data.place.reviews} />
               <AddReview regionId={regionId} placeId={placeId} />
+              <AddPlaceTrip />
             </Grid>
           </>
         )}

@@ -60,4 +60,12 @@ export default makeStyles(theme => ({
   breadcrumbs: {
     color: 'red',
   },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(5),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
 }));
