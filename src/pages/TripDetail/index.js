@@ -27,8 +27,7 @@ const TripDetail = () => {
             </Typography>
             <Typography variant="overline" gutterBottom className={classes.title}>
               <Typography variant="caption">
-                By: {data.trip.user.firstName}
-                {data.trip.user.lastName} ({data.trip.user.email})
+                {`By: ${data.trip.user.firstName} ${data.trip.user.lastName} (${data.trip.user.email})`}
               </Typography>
             </Typography>
           </div>
