@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { Formik } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 import Alert from '@material-ui/lab/Alert';
 
 import useStyles from './styles';
@@ -99,7 +99,7 @@ const AddTripModal = ({ isOpened, handleClose }) => {
 };
 
 AddTripModal.propTypes = {
-  isOpened: func.isRequired,
+  isOpened: bool.isRequired,
   handleClose: func.isRequired,
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Menu, MenuItem, Fab } from '@material-ui/core';
+import { Menu, MenuItem, Fab, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
@@ -14,8 +15,14 @@ const AddPlaceTrip = () => {
   const { token } = useAuth();
   const { regionId, placeId } = useParams();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState(null);
   const { data, loading } = useQuery(USER_TRIPS, { variables: { token } });
-  const [AddPlaceToTrip] = useMutation(ADD_PLACE_TRIP);
+
+  const [AddPlaceToTrip] = useMutation(ADD_PLACE_TRIP, {
+    onCompleted: () => setSnackbarMessage({ severity: 'success', message: 'Added successfully' }),
+    onError: () =>
+      setSnackbarMessage({ severity: 'error', message: 'There was a problem adding the place.' }),
+  });
   const anchorElRef = useRef();
 
   return (
@@ -63,6 +70,14 @@ const AddPlaceTrip = () => {
                 ))}
             </Menu>
           </div>
+          <Snackbar
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            open={!!snackbarMessage}
+            onClose={() => setSnackbarMessage()}
+            autoHideDuration={5000}
+          >
+            <Alert severity={snackbarMessage?.severity}>{snackbarMessage?.message}</Alert>
+          </Snackbar>
         </>
       )}
     </>

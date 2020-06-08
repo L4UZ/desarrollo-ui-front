@@ -11,6 +11,7 @@ export default makeStyles(theme => ({
     width: '100%',
     overflow: 'hidden',
     outline: 0,
+    marginBottom: '5rem',
   },
   content: {
     height: '100%',

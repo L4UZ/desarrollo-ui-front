@@ -18,7 +18,7 @@ const Reviews = ({ reviews }) => {
   const classes = useStyles();
   return (
     <Grid item xs={12} className={classes.gridItem}>
-      <ExpansionPanel defaultExpanded="true">
+      <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
