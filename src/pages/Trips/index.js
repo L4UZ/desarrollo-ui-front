@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Grid, CircularProgress, Button } from '@material-ui/core';
 import { AddCircle } from '@material-ui/icons';
-import { useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { Redirect } from 'react-router-dom';
 
 import useStyles from './styles';
@@ -13,14 +13,22 @@ import AddTripModal from '../../components/AddTripModal';
 const Trips = () => {
   const classes = useStyles();
   const { token } = useAuth();
+  const [loadTrips, { data, loading }] = useLazyQuery(USER_TRIPS, { variables: { token } });
 
-  const { data, loading } = useQuery(USER_TRIPS, { variables: { token } });
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return
+    process.nextTick(() => {
+      if (!token) {
+        return <Redirect to={{ path: '/' }} />;
+      }
+      loadTrips();
+    });
+  }, [token]);
 
   const [open, setOpen] = useState(false);
 
   return (
     <Container component="main" className={classes.container}>
-      {!token && <Redirect to={{ path: '/' }} />}
       <div className={classes.titleDiv}>
         <Typography variant="h4" gutterBottom className={classes.title}>
           My Trips

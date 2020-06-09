@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Navbar from './Navbar';
 import routes from '../constants/routes';
+import NotFound from '../pages/NotFound';
 
 const Router = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const Router = () => (
           {component}
         </Route>
       ))}
+      <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
 );
