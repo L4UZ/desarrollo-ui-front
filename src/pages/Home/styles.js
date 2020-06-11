@@ -50,7 +50,7 @@ export default makeStyles(() => ({
   },
   scrollContainer: {
     position: 'absolute',
-    bottom: '1rem',
+    bottom: '2.5rem',
     left: 0,
     right: 0,
     display: 'flex',

@@ -23,7 +23,13 @@ const AddReview = ({ regionId, placeId }) => {
       cache.writeQuery({
         query: PLACE_DETAIL,
         variables: { placeId },
-        data: { place: { ...place, reviews: [...place.reviews, addedReview] } },
+        data: {
+          place: {
+            ...place,
+            overallScore: addedReview.overallScore,
+            reviews: [...place.reviews, addedReview],
+          },
+        },
       });
     },
   });
