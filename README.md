@@ -1,6 +1,6 @@
 # uTravel
 
-### Jerarquía de componentes de React
+### React components hierarchy
 
 - **HomePage**
 
